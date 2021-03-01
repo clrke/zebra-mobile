@@ -2,26 +2,33 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:zero_mobile/constants/theme.dart';
+import 'package:zero_mobile/screens/post.dart';
+import 'package:zero_mobile/utils/pageViewPages.dart';
+import 'package:zero_mobile/utils/routes.dart';
 
 class AppContainer extends StatefulWidget {
-  final Widget child;
-  final String title;
-
-  AppContainer({@required this.child, @required this.title});
-
   @override
-  _AppContainerState createState() =>
-      _AppContainerState(child: this.child, title: this.title);
+  _AppContainerState createState() => _AppContainerState();
 }
 
 class _AppContainerState extends State<AppContainer> {
   bool isToggle = false;
   int _currentIndex = 0;
+  String title = PageViewPage.pageTitle(pageIndex: 0);
 
-  final Widget child;
-  final String title;
+  PageController _pageController;
 
-  _AppContainerState({@required this.child, @required this.title});
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: 0);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +64,15 @@ class _AppContainerState extends State<AppContainer> {
             },
           ),
         ),
-        body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: child,
+        body: PageView(
+          controller: _pageController,
+          onPageChanged: (newIndex){
+            setState(() {
+              _currentIndex = newIndex;
+              title = PageViewPage.pageTitle(pageIndex: newIndex);
+            });
+          },
+          children: PageViewPage.pages(),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: [
@@ -74,9 +87,7 @@ class _AppContainerState extends State<AppContainer> {
           showSelectedLabels: false,
           currentIndex: _currentIndex,
           onTap: (index){
-            setState(() {
-              _currentIndex = index;
-            });
+            _pageController.jumpToPage(index);
           },
        )
     );

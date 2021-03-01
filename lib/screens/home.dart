@@ -12,13 +12,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return AppContainer(
-        child: Column(
-          children: [
-            Text(' i am home'),
-          ],
-        ),
-        title:'home'
-    );
+    return AppContainer();
   }
 }

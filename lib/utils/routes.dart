@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'file:///C:/atmos/zebra-mobile/lib/screens/home.dart';
-import 'file:///C:/atmos/zebra-mobile/lib/screens/login.dart';
+import '../screens/home.dart';
+import '../screens/login.dart';
 
 class NonAuthRoute {
   static Route<dynamic> generateRoute(RouteSettings settings) {

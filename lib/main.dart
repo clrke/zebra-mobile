@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        appBarTheme: AppBarTheme(color: Colors.orange[500],elevation: 0.0),
+        appBarTheme: AppBarTheme(color: Colors.transparent,elevation: 0.0),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: isAuthenticate ? Home() : Login(),

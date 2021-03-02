@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class Operation extends StatefulWidget {
   @override
@@ -12,6 +13,9 @@ class _OperationState extends State<Operation> {
       child: Column(
         children: [
           Text(' i am in operation'),
+          RaisedButton(onPressed: (){
+            Navigator.pushNamed(context, '/post');
+          })
         ],
       ),
     );

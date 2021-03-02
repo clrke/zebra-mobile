@@ -40,12 +40,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: isAuthenticate ? '/home' : '/',
+      initialRoute: isAuthenticate ? '/' : '/login',
       onGenerateRoute: isAuthenticate ? AuthRoute.generateRoute : NonAuthRoute.generateRoute,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        appBarTheme: AppBarTheme(color: Colors.orange[500],elevation: 0.0),
+        appBarTheme: AppBarTheme(color: Colors.transparent,elevation: 0.0),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: isAuthenticate ? Home() : Login(),

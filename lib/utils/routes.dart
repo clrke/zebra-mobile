@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../screens/home.dart';
-import '../screens/login.dart';
+import 'package:zero_mobile/screens/home.dart';
+import 'package:zero_mobile/screens/login.dart';
 
 class NonAuthRoute {
   static Route<dynamic> generateRoute(RouteSettings settings) {

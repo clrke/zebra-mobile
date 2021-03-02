@@ -14,7 +14,7 @@ class CustomTextLabel extends StatelessWidget {
         labelText,
         style: TextStyle(
           color: Colors.black,
-          fontSize: 17.0,
+          fontSize: 18.0,
           fontWeight: FontWeight.bold,
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../components/loader.dart';
-import '../components/loginForm.dart';
+import 'package:zero_mobile/components/loader.dart';
+import 'package:zero_mobile/components/loginForm.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -18,7 +18,6 @@ class _LoginState extends State<Login> {
     var bodyProgress = Loader(body: body);
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(10.0),
           child: loading ? bodyProgress : body
       ),
     );

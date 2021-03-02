@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'buttons/forgotPasswordButton.dart';
-import 'buttons/loginButton.dart';
-import 'package:zero_mobile/components/appLogo.dart';
+import './formWidgets/customTextLabel.dart';
+import './formWidgets/customTextField.dart';
+import './buttonWidgets/forgotPasswordButton.dart';
+import './buttonWidgets/loginButton.dart';
+import 'appLogo.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -9,114 +11,75 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Padding(
-        padding: EdgeInsets.all(30.0),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Center(child: AppLogo()),
-              SizedBox(height: 30.0),
-              Center(
-                child: Text(
-                  'Zero BDI App',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+    return Form(
+      key: _formKey,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Padding(
+          padding: EdgeInsets.all(15.0),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+
+                // App Logo
+                Center(child: AppLogo()),
+
+                SizedBox(height: 10.0),
+                Center(
+                  child: Text(
+                    'Zero BDI App',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    )
                   )
-                )
-              ),
+                ),
 
-              SizedBox(height: 30.0),
-              Padding(
-                padding: EdgeInsets.fromLTRB(10.0, 0, 0, 0),
-                child: Text(
-                  'Username',
+                // Username Text Box
+                SizedBox(height: 30.0),
+                CustomTextLabel(labelText: 'Username'),
+                SizedBox(height: 5.0),
+                CustomTextField(hintText: '+63', obscureText: false),
+
+                // Password TextBox
+                SizedBox(height: 20.0),
+                CustomTextLabel(labelText: 'Password'),
+                SizedBox(height: 5.0),
+                CustomTextField(hintText: 'Enter Password', obscureText: true),
+
+                // Password Note
+                SizedBox(height: 20.0),
+                Text(
+                  'Your password must contain at least 8 to 16 characters, a combination of upper and lowercase letters, and at least one number or symbol.',
+                  textAlign: TextAlign.justify,
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.grey[500],
                     fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                    fontWeight: FontWeight.normal,
+                  )
                 ),
-              ),
 
-              SizedBox(height: 10.0),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: "+63",
-                  fillColor: Colors.white,
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(6.0),
-                    borderSide: BorderSide(
-                      color: Colors.black,
-                      width: 1.0,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(6.0),
-                    borderSide: BorderSide(
-                      color: Colors.blue,
-                      width: 1.0,
-                    ),
-                  ),
-                  //fillColor: Colors.green
-                ),
-              ),
+                // Forgot Password Button
+                Center(child: ForgotPasswordButton()),
 
-              SizedBox(height: 20.0),
-              Padding(
-                padding: EdgeInsets.fromLTRB(10.0, 0, 0, 0),
-                child: Text(
-                  'Password',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+                // Login Button
+                SizedBox(height: 5.0),
+                Center(child: LoginButton(
+                  onPressed: () {
+                    if (_formKey.currentState.validate())
+                      Scaffold.of(context)
+                          .showSnackBar(SnackBar(content: Text('Processing Data')));
+                  },
+                )),
 
-              SizedBox(height: 10.0),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: "Password",
-                  fillColor: Colors.white,
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(6.0),
-                    borderSide: BorderSide(
-                      color: Colors.black,
-                      width: 1.0,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(6.0),
-                    borderSide: BorderSide(
-                      color: Colors.blue,
-                      width: 1.0,
-                    ),
-                  ),
-                  //fillColor: Colors.green
-                ),
-              ),
-              SizedBox(height: 25.0),
-              Text(
-                'Your password must contain at least 8 to 16 characters, a combination of upper and lowercase letters, and at least one number or symbol.',
-                textAlign: TextAlign.justify,
-                style: TextStyle(
-                  color: Colors.grey[500],
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.normal,
-                )
-              ),
-              SizedBox(height: 5.0),
-              Center(child: ForgotPasswordButton()),
-              SizedBox(height: 5.0),
-              Center(child: LoginButton()),
-            ],
-        )
+              ],
+          )
+        ),
       ),
     );
   }

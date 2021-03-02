@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class CustomTextField extends StatelessWidget {
+
+class CustomNumberField extends StatelessWidget {
 
   final String hintText;
-  final bool obscureText;
 
-  CustomTextField({this.hintText, this.obscureText});
+  CustomNumberField({this.hintText});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-
       validator: (value) {
         if (value.isEmpty) {
           return 'This is required.';
         }
         return null;
       },
-
-      obscureText: obscureText,
       decoration: InputDecoration(
         errorStyle: TextStyle(
           fontSize: 16.0,
@@ -59,6 +57,8 @@ class CustomTextField extends StatelessWidget {
         ),
 
       ),
+      inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
+      keyboardType: TextInputType.number,
     );
   }
 }

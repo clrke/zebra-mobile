@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:zero_mobile/components/formWidgets/customTextLabel.dart';
 import 'package:zero_mobile/components/formWidgets/customTextField.dart';
+import 'package:zero_mobile/components/formWidgets/customNumberField.dart';
 import 'package:zero_mobile/components/buttonWidgets/forgotPasswordButton.dart';
 import 'package:zero_mobile/components/buttonWidgets/loginButton.dart';
 import 'package:zero_mobile/components/functions/appLogo.dart';
+import 'package:zero_mobile/components/loader.dart';
+
 
 class LoginForm extends StatefulWidget {
   @override
@@ -45,7 +48,7 @@ class _LoginFormState extends State<LoginForm> {
                   SizedBox(height: 30.0),
                   CustomTextLabel(labelText: 'Username'),
                   SizedBox(height: 5.0),
-                  CustomTextField(hintText: '+63', obscureText: false),
+                  CustomNumberField(hintText: '+63'),
 
                   // Password TextBox
                   SizedBox(height: 20.0),
@@ -70,12 +73,14 @@ class _LoginFormState extends State<LoginForm> {
                   // Login Button
                   Center(child: LoginButton(
                     onPressed: () {
+                      bool loading = true;
                       if (_formKey.currentState.validate())
-                        Scaffold.of(context)
-                            .showSnackBar(SnackBar(content: Text('Processing Data')));
+                      {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(SnackBar(content: Text('Logging in...')));
+                      }
                     },
                   )),
-
                 ],
             )
           ),
@@ -84,3 +89,5 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 }
+
+

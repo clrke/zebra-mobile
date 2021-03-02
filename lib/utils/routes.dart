@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zero_mobile/screens/account.dart';
+import 'package:zero_mobile/screens/call.dart';
 import 'package:zero_mobile/screens/operation.dart';
 import 'file:///C:/atmos/zebra-mobile/lib/screens/home.dart';
 import 'file:///C:/atmos/zebra-mobile/lib/screens/login.dart';
@@ -11,10 +12,8 @@ class NonAuthRoute {
     final args = settings.arguments;
 
     switch(settings.name) {
-      case '/':
+      case '/login':
         return MaterialPageRoute(builder: (_)=>Login());
-      case '/home':
-        return MaterialPageRoute(builder: (_)=>Home());
       default:
         return null;
     }
@@ -29,6 +28,8 @@ class AuthRoute {
         return MaterialPageRoute(builder: (_)=>Operation());
       case '/post':
         return MaterialPageRoute(builder: (_)=>Post());
+      case '/call':
+        return MaterialPageRoute(builder: (_)=>Call());
       case '/account':
         return MaterialPageRoute(builder: (_)=>Account());
       default:

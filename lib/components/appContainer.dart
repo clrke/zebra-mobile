@@ -13,7 +13,7 @@ class AppContainer extends StatefulWidget {
 class _AppContainerState extends State<AppContainer> {
   List<Map<String, dynamic>> routeList = [
     {'route': '/', 'title': 'Operation'},
-    {'route': '/unknown', 'title': 'unknown'},
+    {'route': '/call', 'title': 'Emergency Call'},
     {'route': '/post', 'title': 'Create a Post'},
     {'route': '/account', 'title': 'Account'}
   ];

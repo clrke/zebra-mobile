@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: isAuthenticate ? '/home' : '/',
+      initialRoute: isAuthenticate ? '/' : '/login',
       onGenerateRoute: isAuthenticate ? AuthRoute.generateRoute : NonAuthRoute.generateRoute,
       title: 'Flutter Demo',
       theme: ThemeData(

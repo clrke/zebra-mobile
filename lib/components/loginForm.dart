@@ -3,7 +3,7 @@ import 'package:zero_mobile/components/formWidgets/customTextLabel.dart';
 import 'package:zero_mobile/components/formWidgets/customTextField.dart';
 import 'package:zero_mobile/components/buttonWidgets/forgotPasswordButton.dart';
 import 'package:zero_mobile/components/buttonWidgets/loginButton.dart';
-import 'package:zero_mobile/components/appLogo.dart';
+import 'file:///C:/Users/raphn/Desktop/android-studio-projects/zebra-bdi/zebra-mobile/lib/components/functions/appLogo.dart';
 
 class LoginForm extends StatefulWidget {
   @override

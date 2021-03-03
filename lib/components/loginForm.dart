@@ -73,7 +73,7 @@ class _LoginFormState extends State<LoginForm> {
                   // Login Button
                   Center(child: LoginButton(
                     onPressed: () {
-                      bool loading = true;
+
                       if (_formKey.currentState.validate())
                       {
                           ScaffoldMessenger.of(context)

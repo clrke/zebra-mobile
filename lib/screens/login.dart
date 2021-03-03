@@ -13,7 +13,6 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    // var body = Center(child: Text('Login screen'),);
     var body = LoginForm();
     var bodyProgress = Loader(body: body);
     return Scaffold(

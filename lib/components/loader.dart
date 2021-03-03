@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:zero_mobile/constants/theme.dart';
 
 class Loader extends StatelessWidget {
   final Widget body;

@@ -10,8 +10,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  bool isToggle = false;
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

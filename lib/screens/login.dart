@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:zero_mobile/components/loader.dart';
+import 'package:zero_mobile/components/loginForm.dart';
 import 'package:zero_mobile/constants/theme.dart';
-import '../components/loader.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -13,16 +14,9 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    var body = Center(
-      child: Text('Login screen',
-        style: TextStyle(
-            color: theme['primary'],
-            fontSize: 20.0),
-      ),
-    );
+    var body = LoginForm();
     var bodyProgress = Loader(body: body);
     return Scaffold(
-      appBar: AppBar(),
       body: Container(
           child: loading ? bodyProgress : body
       ),

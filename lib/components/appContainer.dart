@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'file:///C:/atmos/zebra-mobile/lib/components/functions/appBar.dart';
+import 'package:zero_mobile/components/functions/appBar.dart';
 import 'package:zero_mobile/utils/routes.dart';
 
 import 'functions/bottomNavBar.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zero_mobile/constants/theme.dart';
 
 class BottomNavBar {
   static List<BottomNavigationBarItem> bottomItems = [
@@ -13,6 +14,7 @@ class BottomNavBar {
       items: bottomItems,
       iconSize: 32.0,
       type: BottomNavigationBarType.fixed,
+      selectedItemColor: theme['primary'],
       showUnselectedLabels: false,
       showSelectedLabels: false,
       currentIndex: currentIndex,

@@ -12,15 +12,16 @@ class ContainerAppBar {
       centerTitle: true,
       title: Text(
         title,
-        style: TextStyle(color: theme['primary']),
+        style: TextStyle(color: theme['secondary']),
       ),
       actions: [
         Switch(
           value: isToggle,
           onChanged: (value) => onSwitch(value),
-          inactiveThumbColor: theme['primary'],
-          inactiveTrackColor: theme['secondary'],
-          activeTrackColor: theme['primary'],
+          inactiveThumbColor: theme['secondary'],
+          inactiveTrackColor: theme['opacitySecondary'],
+          activeTrackColor: theme['secondary'],
+          activeColor: theme['secondary'],
         ),
       ],
       leading: IconButton(
@@ -28,7 +29,7 @@ class ContainerAppBar {
         highlightColor: Colors.transparent,
         icon: Icon(
           Icons.help,
-          color: theme['primary'],
+          color: theme['secondary'],
         ),
         onPressed: iconPress,
       ),

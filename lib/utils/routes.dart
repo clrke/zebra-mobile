@@ -4,7 +4,6 @@ import 'package:zero_mobile/screens/home.dart';
 import 'package:zero_mobile/screens/login.dart';
 import 'package:zero_mobile/screens/account.dart';
 import 'package:zero_mobile/screens/call.dart';
-import 'package:zero_mobile/screens/login.dart';
 import 'package:zero_mobile/screens/operation.dart';
 import 'package:zero_mobile/screens/post.dart';
 
@@ -13,8 +12,10 @@ class NonAuthRoute {
     switch(settings.name) {
       case '/login':
         return MaterialPageRoute(builder: (_)=>Login());
+      case '/home':
+        return MaterialPageRoute(builder: (_)=>Home());
       default:
-        return null;
+        return throw Exception('Invalid route: ${settings.name}');
     }
   }
 }
@@ -30,6 +31,8 @@ class AuthRoute {
         return MaterialPageRoute(builder: (_)=>Call());
       case '/account':
         return MaterialPageRoute(builder: (_)=>Account());
+      case '/logout':
+        return MaterialPageRoute(builder: (_)=>Login());
       default:
         return throw Exception('Invalid route: ${settings.name}');
     }

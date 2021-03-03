@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:zero_mobile/constants/theme.dart';
 
 class Loader extends StatelessWidget {
   final Widget body;
@@ -15,7 +16,7 @@ class Loader extends StatelessWidget {
           Container(
             alignment: AlignmentDirectional.center,
             decoration: BoxDecoration(
-              color: Colors.white70,
+              color: Colors.transparent,
             ),
             child: Container(
               decoration: BoxDecoration(

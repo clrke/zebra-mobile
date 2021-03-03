@@ -1,4 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:zero_mobile/providers/TokenProvider.dart';
 
 class Account extends StatefulWidget {
   @override
@@ -8,10 +11,18 @@ class Account extends StatefulWidget {
 class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text('account page'),
-      ),
-    );
+    return Consumer<TokenProvider>(builder: (context,data,child){
+      return Container(
+        child: Column(
+          children: [
+            Text(' i am in operation'),
+            RaisedButton(onPressed: (){
+              Navigator.pushReplacementNamed(context, '/logout');
+              data.deleteToken();
+            },child: Text('Logout'),)
+          ],
+        ),
+      );
+    });
   }
 }

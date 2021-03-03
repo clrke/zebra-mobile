@@ -1,15 +1,8 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:zero_mobile/components/loader.dart';
-import 'package:zero_mobile/repositories/userRepository.dart';
-import 'package:zero_mobile/utils/apiInstance.dart';
 import 'package:zero_mobile/utils/localStorage.dart';
 import 'package:zero_mobile/utils/routes.dart';
 import 'screens/home.dart';
 import 'screens/login.dart';
-import 'constants/settings.dart';
-import 'models/tokenModel.dart';
-import 'package:dio/dio.dart';
 import './utils/routes.dart';
 
 void main() {

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:zero_mobile/Base/baseModel.dart';
 
 class TokenModel extends BaseModel{

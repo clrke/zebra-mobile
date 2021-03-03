@@ -4,13 +4,12 @@ import 'package:zero_mobile/screens/home.dart';
 import 'package:zero_mobile/screens/login.dart';
 import 'package:zero_mobile/screens/account.dart';
 import 'package:zero_mobile/screens/call.dart';
+import 'package:zero_mobile/screens/login.dart';
 import 'package:zero_mobile/screens/operation.dart';
 import 'package:zero_mobile/screens/post.dart';
 
 class NonAuthRoute {
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    final args = settings.arguments;
-
     switch(settings.name) {
       case '/login':
         return MaterialPageRoute(builder: (_)=>Login());
@@ -22,7 +21,6 @@ class NonAuthRoute {
 
 class AuthRoute {
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    final args = settings.arguments;
     switch(settings.name) {
       case '/':
         return MaterialPageRoute(builder: (_)=>Operation());

@@ -6,6 +6,7 @@ import 'package:zero_mobile/components/buttonWidgets/forgotPasswordButton.dart';
 import 'package:zero_mobile/components/buttonWidgets/loginButton.dart';
 import 'package:zero_mobile/components/functions/appLogo.dart';
 import 'package:zero_mobile/components/loader.dart';
+import 'package:zero_mobile/screens/post.dart';
 
 
 class LoginForm extends StatefulWidget {
@@ -78,6 +79,10 @@ class _LoginFormState extends State<LoginForm> {
                       {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(SnackBar(content: Text('Logging in...')));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Post()),
+                          );
                       }
                     },
                   )),

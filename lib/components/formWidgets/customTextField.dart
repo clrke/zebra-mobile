@@ -10,7 +10,6 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-
       validator: (value) {
         if (value.isEmpty) {
           return 'This is required.';

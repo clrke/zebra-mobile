@@ -20,7 +20,7 @@ class AppCaptionField extends StatelessWidget {
 
     final width = SizeConfig.screenWidth;
     final height = SizeConfig.screenHeight;
-    final fontSize = height * 0.025;
+    final fontSize = height * 0.024;
     final borderRadius = height * 0.02;
 
     return TextFormField(
@@ -29,24 +29,24 @@ class AppCaptionField extends StatelessWidget {
       validator: onValidate,
       style: TextStyle(fontSize: fontSize),
       decoration: InputDecoration(
-        fillColor: Colors.grey[500],
+        fillColor: Colors.grey[400],
+        filled: true,
         contentPadding:EdgeInsets.symmetric(
             vertical: width * 0.06,
-            horizontal: height * 0.02
-
+            horizontal: height * 0.02,
         ),
         hintText: hintText,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
           borderSide: BorderSide(
-            color: Colors.grey[500],
+            color: Colors.grey[400],
             width: 2.0,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
           borderSide: BorderSide(
-            color: Colors.grey[500],
+            color: Colors.grey[400],
             width: 2.0,
           ),
         ),

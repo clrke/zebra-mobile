@@ -16,6 +16,11 @@ class _CreatePostFormState extends State<CreatePostForm> {
   final _formKey = GlobalKey<FormState>();
   final _captionController = TextEditingController();
 
+  confirmPressed() {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text('Moving to next screen...')));
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -33,7 +38,9 @@ class _CreatePostFormState extends State<CreatePostForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-
+                SizedBox(
+                  height: height * 0.05,
+                ),
                 Row(
                   children: [
                     ProfileIcon(),
@@ -62,7 +69,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                       return 'Caption is required';
                     }
                   },
-                  hintText: 'Ask your co-surgeons',
+                  hintText: 'Ask your co-surgeons...',
                 ),
                 SizedBox(
                   height: height * 0.03,
@@ -71,7 +78,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                    AppButton(
-                       onPressed: () {},
+                       onPressed: confirmPressed,
                        text: 'Take Photo',
                        padding: EdgeInsets.symmetric(
                            horizontal: width * 0.06,
@@ -79,7 +86,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                        )
                    ),
                    AppButtonOutline(
-                        onPressed: () {},
+                        onPressed: confirmPressed,
                         text: 'Upload Photo',
                         padding: EdgeInsets.symmetric(
                             horizontal: width * 0.06,

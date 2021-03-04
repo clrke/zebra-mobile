@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:zero_mobile/utils/sizeConfig.dart';
 
 final Map<String, dynamic> theme = {
   'primary': HexColor("#0D29C4"),

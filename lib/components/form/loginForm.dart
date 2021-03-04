@@ -28,10 +28,6 @@ class _LoginFormState extends State<LoginForm> {
       String password = _passwordController.value.text;
       Map<String, dynamic> data = {'username': username, 'password': password};
       onSubmit(data);
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-              builder: (context) => Post())
-      );
     }
   }
 

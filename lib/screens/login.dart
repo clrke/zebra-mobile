@@ -40,6 +40,10 @@ class _LoginState extends State<Login> {
     Navigator.pushReplacementNamed(context, '/home');
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

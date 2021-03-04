@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:zero_mobile/providers/TokenProvider.dart';
+import 'package:zero_mobile/providers/HomeProvider.dart';
 
 class Account extends StatefulWidget {
   @override
@@ -11,7 +11,7 @@ class Account extends StatefulWidget {
 class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<TokenProvider>(builder: (context,data,child){
+    return Consumer<HomeProvider>(builder: (context,data,child){
       return Container(
         child: Column(
           children: [

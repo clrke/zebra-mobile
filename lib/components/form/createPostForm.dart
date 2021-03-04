@@ -17,8 +17,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
   final _captionController = TextEditingController();
 
   confirmPressed() {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text('Moving to next screen...')));
+    print('post');
   }
 
   @override
@@ -29,10 +28,10 @@ class _CreatePostFormState extends State<CreatePostForm> {
 
     return Form(
       key: _formKey,
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
+      child: Container(
+        width: width,
+        height: height,
+        child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: height * 0.03),
             child: Column(
@@ -42,25 +41,48 @@ class _CreatePostFormState extends State<CreatePostForm> {
                   height: height * 0.05,
                 ),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ProfileIcon(),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          left: width * 0.05,
-                          bottom: height * 0.01,
-                          top: height * 0.01),
-                      child: Text(
-                        'ID 1234567890',
-                        style: TextStyle(
-                          fontSize: fontSize,
-                          color: theme['secondary'],
+                    Container(
+                      width: width * 0.55,
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Row(
+                          children: [
+                            ProfileIcon(),
+                            SizedBox(width: 12.0,),
+                            Text(
+                              'ID 1234567890',
+                              style: TextStyle(
+                                color: theme['secondary'],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
+                    Container(
+                      child: ElevatedButton(
+                          onPressed: (){},
+                          child: Text('Post'),
+                          style: ElevatedButton.styleFrom(
+                            primary: theme['secondary'],
+                            padding: EdgeInsets.symmetric(horizontal:27.0,vertical: 12.0),
+                            elevation: 20,
+                            shadowColor: Colors.black,
+                            textStyle: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: fontSize,
+                            ),
+                          )
+                      ),
+                    )
                   ],
                 ),
                 SizedBox(
-                  height: height * 0.03,
+                  height: height * 0.05,
                 ),
                 AppCaptionField(
                   controller: _captionController,
@@ -72,28 +94,35 @@ class _CreatePostFormState extends State<CreatePostForm> {
                   hintText: 'Ask your co-surgeons...',
                 ),
                 SizedBox(
-                  height: height * 0.03,
+                  height: height * 0.06,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                   AppButton(
-                       onPressed: confirmPressed,
-                       text: 'Take Photo',
-                       padding: EdgeInsets.symmetric(
-                           horizontal: width * 0.06,
-                           vertical: height * 0.02
-                       )
-                   ),
-                   AppButtonOutline(
-                        onPressed: confirmPressed,
-                        text: 'Upload Photo',
-                        padding: EdgeInsets.symmetric(
-                            horizontal: width * 0.06,
-                            vertical: height * 0.02
+                Container(
+                  width: width,
+                  padding: EdgeInsets.symmetric(horizontal:16.0),
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Row(
+                      children: <Widget>[
+                        AppButton(
+                            onPressed: confirmPressed,
+                            text: 'Take a Photo',
+                            padding: EdgeInsets.symmetric(
+                                horizontal: width * 0.06,
+                                vertical: height * 0.015
+                            )
+                        ),
+                        SizedBox(width: 20.0,),
+                        AppButtonOutline(
+                            onPressed: confirmPressed,
+                            text: 'Upload a Photo',
+                            padding: EdgeInsets.symmetric(
+                                horizontal: width * 0.06,
+                                vertical: height * 0.015
+                            )
                         )
-                    )
-                  ],
+                      ],
+                    ),
+                  ),
                 )
               ],
             ),

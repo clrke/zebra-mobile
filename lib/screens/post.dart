@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:zero_mobile/components/form/createPostForm.dart';
-import '../components/functions/appBar.dart';
-import '../components/functions/bottomNavBar.dart';
+import 'package:zero_mobile/providers/HomeProvider.dart';
 import '../components/loader.dart';
-import '../components/functions/appBar.dart';
-
-int _currentIndex = 2;
 
 class Post extends StatefulWidget {
   @override
@@ -15,27 +12,23 @@ class Post extends StatefulWidget {
 
 class _PostState extends State<Post> {
   bool loading = false;
+  String title = "Create Post";
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      Provider.of<HomeProvider>(context,listen: false).changeTitle(title: title);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     var body = CreatePostForm();
     var bodyProgress = Loader(body: body);
-    return Scaffold(
-        // appBar: PreferredSize(
-        //   preferredSize: const Size.fromHeight(100),
-        //   child: ContainerAppBar(),
-        // ),
 
-        body: Container(
-          child: loading ? bodyProgress : body
-        ),
-        bottomNavigationBar: BottomNavBar.bottomBar(
-            currentIndex: _currentIndex,
-            onSelectNav: (bottomNavIndex) {
-              _currentIndex = bottomNavIndex;
-              setState(() {});
-            }
-        )
+    return Container(
+        child: loading ? bodyProgress : body
     );
   }
 }

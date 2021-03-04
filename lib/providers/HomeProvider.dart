@@ -1,8 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:zero_mobile/utils/localStorage.dart';
 
-class TokenProvider extends ChangeNotifier{
+class HomeProvider extends ChangeNotifier{
   String accessToken;
+  String appBarTitle = 'Operation';
+
+  changeTitle({@required String title})async{
+    appBarTitle = title;
+    notifyListeners();
+  }
 
   storeToken() async{
     accessToken = await LocalStorage.readLocalStorage('_token');

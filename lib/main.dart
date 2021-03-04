@@ -2,13 +2,14 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:zero_mobile/utils/localStorage.dart';
 import 'package:zero_mobile/utils/routes.dart';
+import 'constants/settings.dart';
 import 'screens/home.dart';
 import 'screens/login.dart';
 import './utils/routes.dart';
 
 void main() => runApp(
   DevicePreview(
-    enabled: true,
+    enabled: !settings['isRelease'],
     builder: (context) => MyApp(), // Wrap your app
   ),
 );

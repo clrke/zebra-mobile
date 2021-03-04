@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:zero_mobile/screens/checklist.dart';
 import 'package:zero_mobile/screens/home.dart';
 import 'package:zero_mobile/screens/login.dart';
 import 'package:zero_mobile/screens/account.dart';
@@ -25,6 +26,8 @@ class AuthRoute {
     switch(settings.name) {
       case '/':
         return MaterialPageRoute(builder: (_)=>Operation());
+      case '/checklist':
+        return MaterialPageRoute(builder: (_)=>Checklist());
       case '/post':
         return MaterialPageRoute(builder: (_)=>Post());
       case '/call':

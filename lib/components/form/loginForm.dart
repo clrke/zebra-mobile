@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zero_mobile/components/appButton.dart';
 import 'package:zero_mobile/components/appTextField.dart';
+import '../../screens/post.dart';
 import '../appLogo.dart';
 
 class LoginForm extends StatefulWidget {
@@ -27,6 +28,10 @@ class _LoginFormState extends State<LoginForm> {
       String password = _passwordController.value.text;
       Map<String, dynamic> data = {'username': username, 'password': password};
       onSubmit(data);
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+              builder: (context) => Post())
+      );
     }
   }
 

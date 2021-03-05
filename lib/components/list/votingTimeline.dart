@@ -9,7 +9,6 @@ class VotingTimeline extends StatefulWidget {
 
 class _VotingTimelineState extends State<VotingTimeline> {
 
-
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;

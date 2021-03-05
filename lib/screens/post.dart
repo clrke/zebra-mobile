@@ -17,9 +17,9 @@ class _PostState extends State<Post> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_){
-      Provider.of<HomeProvider>(context,listen: false).changeTitle(title: title);
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_){
+    //   Provider.of<HomeProvider>(context,listen: false).changeTitle(title: title);
+    // });
   }
 
   @override

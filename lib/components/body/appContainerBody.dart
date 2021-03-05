@@ -15,7 +15,7 @@ class _AppContainerBodyState extends State<AppContainerBody> {
   List<Map<String, dynamic>> routeList = [
     {'route': '/', 'title': 'Operation'},
     {'route': '/call', 'title': 'Emergency Call'},
-    {'route': '/checklist', 'title': 'Checklist'},
+    {'route': '/post', 'title': 'Create Post'},
     {'route': '/account', 'title': 'Account'}
   ];
 

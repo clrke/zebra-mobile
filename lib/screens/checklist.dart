@@ -32,8 +32,9 @@ class _ChecklistState extends State<Checklist> {
     final height = SizeConfig.screenHeight;
     final headerFontSize = height * 0.025;
     final listFontSize = height * 0.02;
+    final List<String> _providerCheckList = Provider.of<PollProvider>(context,listen: false).checkList;
 
-      return Provider.of<PollProvider>(context,listen: false).checkList.isEmpty ? Container(
+    return _providerCheckList.isEmpty ? Container(
         width: width,
         height: height,
         child: Padding(

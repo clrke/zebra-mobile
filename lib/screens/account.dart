@@ -12,6 +12,11 @@ class Account extends StatefulWidget {
 class _AccountState extends State<Account> {
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Consumer<HomeProvider>(builder: (context,data,child){
       return Container(

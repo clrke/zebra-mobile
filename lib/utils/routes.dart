@@ -26,6 +26,8 @@ class AuthRoute {
     switch(settings.name) {
       case '/':
         return MaterialPageRoute(builder: (_)=>Operation());
+      case '/home':
+        return MaterialPageRoute(builder: (_)=>Home());
       case '/checklist':
         return MaterialPageRoute(builder: (_)=>Checklist());
       case '/post':

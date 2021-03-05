@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-
-import '../../constants/theme.dart';
-import '../appButton.dart';
-import '../appButtonOutline.dart';
-import '../appCaptionField.dart';
-import '../functions/appBar.dart';
-import '../profileIcon.dart';
+import 'package:zero_mobile/components/appButton.dart';
+import 'package:zero_mobile/components/appButtonOutline.dart';
+import 'package:zero_mobile/components/appCaptionField.dart';
+import 'package:zero_mobile/components/profileIcon.dart';
+import 'package:zero_mobile/constants/theme.dart';
 
 class CreatePostForm extends StatefulWidget {
   @override

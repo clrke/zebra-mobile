@@ -28,7 +28,7 @@ class _ChecklistState extends State<Checklist> {
     final listFontSize = height * 0.02;
 
     return Consumer<PollProvider>(builder: (context,data,child){
-      return data.checkList.isNotEmpty ? Container(
+      return data.checkList.isEmpty ? Container(
         width: width,
         height: height,
         child: Padding(
@@ -155,10 +155,9 @@ class _ChecklistState extends State<Checklist> {
               Center(
                 child: AppButton(
                     onPressed: (){
-                      print(data.checkList);
-                      // if(data.checkList.isNotEmpty) {
-                      //   Navigator.pushReplacementNamed(context, '/post');
-                      // }
+                      if(data.checkList.isNotEmpty) {
+                        Navigator.pushReplacementNamed(context, '/post');
+                      }
                     },
                     text: 'Submit',
                     padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 32.0)

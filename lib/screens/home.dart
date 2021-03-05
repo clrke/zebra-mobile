@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
         ),
         ChangeNotifierProvider(
           create: (context) => PollProvider(),
-        )
+        ),
       ],
       child: AppContainer(),
     );

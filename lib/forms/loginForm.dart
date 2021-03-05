@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zero_mobile/components/appButton.dart';
+import 'package:zero_mobile/components/appLogo.dart';
 import 'package:zero_mobile/components/appTextField.dart';
-import '../../screens/post.dart';
-import '../appLogo.dart';
 
 class LoginForm extends StatefulWidget {
   final ValueChanged onSubmit;
@@ -35,7 +34,7 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final fontSize = height * 0.025;
+    final fontSize = height * 0.023;
 
     return Form(
       key: _formKey,
@@ -50,7 +49,7 @@ class _LoginFormState extends State<LoginForm> {
               children: <Widget>[
                 Center(
                   child: Padding(
-                  padding: EdgeInsets.only(bottom: height * 0.03),
+                  padding: EdgeInsets.only(bottom: height * 0.010),
                   child: AppLogo(),
                 )),
                 Padding(

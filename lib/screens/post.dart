@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:zero_mobile/components/form/createPostForm.dart';
+import 'package:zero_mobile/forms/createPostForm.dart';
 import 'package:zero_mobile/providers/HomeProvider.dart';
 import '../components/loader.dart';
 

@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:zero_mobile/components/form/loginForm.dart';
 import 'package:zero_mobile/components/loader.dart';
+import 'package:zero_mobile/forms/loginForm.dart';
 import 'package:zero_mobile/repositories/userRepository.dart';
 import 'package:zero_mobile/utils/dialog.dart';
 import 'package:zero_mobile/utils/localStorage.dart';

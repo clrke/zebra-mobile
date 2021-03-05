@@ -22,8 +22,8 @@ class AppTextField extends StatelessWidget {
 
     final width = SizeConfig.screenWidth;
     final height = SizeConfig.screenHeight;
-    final fontSize = height * 0.025;
-    final borderRadius = height * 0.02;
+    final fontSize = height * 0.02;
+    final borderRadius = height * 0.025;
 
     return TextFormField(
       obscureText: obscureText,
@@ -33,7 +33,7 @@ class AppTextField extends StatelessWidget {
       style: TextStyle(fontSize: fontSize),
       decoration: InputDecoration(
         contentPadding:EdgeInsets.symmetric(
-            vertical: width * 0.06,
+            vertical: width * 0.05,
             horizontal: height * 0.02
         ),
         hintText: hintText,

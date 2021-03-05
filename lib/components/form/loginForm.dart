@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zero_mobile/components/appButton.dart';
 import 'package:zero_mobile/components/appTextField.dart';
-import '../../screens/post.dart';
 import '../appLogo.dart';
 
 class LoginForm extends StatefulWidget {

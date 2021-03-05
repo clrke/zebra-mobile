@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../../constants/theme.dart';
 import '../appButton.dart';
 import '../appButtonOutline.dart';
 import '../appCaptionField.dart';
-import '../functions/appBar.dart';
 import '../profileIcon.dart';
 
 class CreatePostForm extends StatefulWidget {

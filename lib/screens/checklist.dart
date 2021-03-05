@@ -17,6 +17,12 @@ class _ChecklistState extends State<Checklist> {
   bool item1 = false;
   bool item2 = false;
   bool item3 = false;
+  List<String> checkList = [];
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +33,7 @@ class _ChecklistState extends State<Checklist> {
     final headerFontSize = height * 0.025;
     final listFontSize = height * 0.02;
 
-    return Consumer<PollProvider>(builder: (context,data,child){
-      return data.checkList.isEmpty ? Container(
+      return Provider.of<PollProvider>(context,listen: false).checkList.isEmpty ? Container(
         width: width,
         height: height,
         child: Padding(
@@ -54,10 +59,10 @@ class _ChecklistState extends State<Checklist> {
                       Checkbox(
                           value : item1,
                           onChanged: (value){
-                            if(item1 == null) {
-                              data.addChecklist(checklist: "Are all the important landmarks identified?");
+                            if(!item1) {
+                              checkList.add("Are all the important landmarks identified?");
                             } else {
-                              data.removeChecklist(checklist: "Are all the important landmarks identified?");
+                              checkList.remove("Are all the important landmarks identified?");
                             }
                             setState(() {
                               item1 =!item1;
@@ -87,9 +92,9 @@ class _ChecklistState extends State<Checklist> {
                           value : item2,
                           onChanged: (value){
                             if(!item2) {
-                              data.addChecklist(checklist: "Are the criteria of Critical View of Safety in doublet view achieved?");
+                              checkList.add("Are the criteria of Critical View of Safety in doublet view achieved?");
                             } else {
-                              data.removeChecklist(checklist: "Are the criteria of Critical View of Safety in doublet view achieved?");
+                              checkList.remove("Are the criteria of Critical View of Safety in doublet view achieved?");
                             }
                             setState(() {
                               item2 =!item2;
@@ -129,10 +134,10 @@ class _ChecklistState extends State<Checklist> {
                       Checkbox(
                           value : item3,
                           onChanged: (value){
-                            if(!item3) {
-                              data.addChecklist(checklist: "Do you agree that it is the cystic duct?");
+                            if(!item2) {
+                              checkList.add("Do you agree that it is the cystic duct?");
                             } else {
-                              data.removeChecklist(checklist: "Do you agree that it is the cystic duct?");
+                              checkList.remove("Do you agree that it is the cystic duct?");
                             }
                             setState(() {
                               item3 =!item3;
@@ -155,7 +160,8 @@ class _ChecklistState extends State<Checklist> {
               Center(
                 child: AppButton(
                     onPressed: (){
-                      if(data.checkList.isNotEmpty) {
+                      if(checkList.isNotEmpty) {
+                        Provider.of<PollProvider>(context,listen: false).addChecklist(checklist: checkList);
                         Navigator.pushReplacementNamed(context, '/post');
                       }
                     },
@@ -167,6 +173,5 @@ class _ChecklistState extends State<Checklist> {
           ),
         ),
       ) : Post();
-    });
   }
 }

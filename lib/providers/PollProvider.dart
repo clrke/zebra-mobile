@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 class PollProvider extends ChangeNotifier{
   List<String> checkList = [];
 
-  addChecklist({@required checklist})async{
-    checkList.add(checklist);
+  addChecklist({@required List<String> checklist})async{
+    checkList = checklist;
     notifyListeners();
   }
 

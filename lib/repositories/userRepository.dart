@@ -31,7 +31,8 @@ class UserRepository {
     Map<String,dynamic> responseJson = jsonDecode(userDetails.body);
     return {
      'accessToken':responseJson['access_token'],
-      'refreshToken':responseJson['refresh_token']
+      'refreshToken':responseJson['refresh_token'],
+      'surgeon':responseJson['surgeon'],
     };
   }
 }

@@ -35,6 +35,8 @@ dependencies:
   provider: ^4.3.3
   flutter_svg: ^0.19.3
   device_preview: ^0.6.2-beta
+  image_picker: ^0.6.7+22
+  jiffy: ^4.0.0
 
 dev_dependencies:
   flutter_test:

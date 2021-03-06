@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zero_mobile/forms/createPostForm.dart';
 import 'package:zero_mobile/providers/HomeProvider.dart';
+import 'package:zero_mobile/providers/PollProvider.dart';
+import 'package:zero_mobile/repositories/pollRepository.dart';
 import '../components/loader.dart';
 
 class Post extends StatefulWidget {
@@ -12,19 +14,34 @@ class Post extends StatefulWidget {
 
 class _PostState extends State<Post> {
   bool loading = false;
-  String title = "Create Post";
 
   @override
   void initState() {
     super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback((_){
-    //   Provider.of<HomeProvider>(context,listen: false).changeTitle(title: title);
-    // });
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      createPoll();
+    });
+  }
+
+  createPoll() async{
+    return await PollRepository.createPoll();
+  }
+
+  onSubmit(caption) async{
+    setState(() {
+      loading = true;
+    });
+    final poll = await PollRepository.savePoll(caption: caption);
+    setState(() {
+      loading = false;
+    });
+    Provider.of<PollProvider>(context,listen: false).resetFields();
+    Navigator.pushReplacementNamed(context, '/results');
   }
 
   @override
   Widget build(BuildContext context) {
-    var body = CreatePostForm();
+    var body = CreatePostForm(onSubmit: onSubmit);
     var bodyProgress = Loader(body: body);
 
     return Container(

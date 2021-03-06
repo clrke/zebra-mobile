@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:zero_mobile/screens/cameraViewer.dart';
 import 'package:zero_mobile/screens/checklist.dart';
 import 'package:zero_mobile/screens/home.dart';
 import 'package:zero_mobile/screens/login.dart';
@@ -7,6 +8,7 @@ import 'package:zero_mobile/screens/account.dart';
 import 'package:zero_mobile/screens/call.dart';
 import 'package:zero_mobile/screens/operation.dart';
 import 'package:zero_mobile/screens/post.dart';
+import 'package:zero_mobile/screens/result.dart';
 
 class NonAuthRoute {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -38,6 +40,10 @@ class AuthRoute {
         return MaterialPageRoute(builder: (_)=>Account());
       case '/logout':
         return MaterialPageRoute(builder: (_)=>Login());
+      case '/camera-viewer':
+        return MaterialPageRoute(builder: (_)=>CameraViewer());
+      case '/results':
+        return MaterialPageRoute(builder: (_)=>Results());
       default:
         return throw Exception('Invalid route: ${settings.name}');
     }

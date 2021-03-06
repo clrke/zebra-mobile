@@ -36,6 +36,7 @@ class _LoginState extends State<Login> {
       return;
     }
 
+    LocalStorage.storeLocalStorage('_surgeonId', userResponse['surgeon']['id']);
     LocalStorage.storeLocalStorage('_token', userResponse['accessToken']);
     Navigator.pushReplacementNamed(context, '/home');
   }

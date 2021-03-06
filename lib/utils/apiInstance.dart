@@ -16,7 +16,7 @@ class ApiInstance {
           return response;
         },
         onError: (DioError e) async {
-          return e;
+          return e.response;
         }
     ));
     return dio;

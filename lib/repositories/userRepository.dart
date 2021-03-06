@@ -32,6 +32,7 @@ class UserRepository {
     return {
      'accessToken':responseJson['access_token'],
       'refreshToken':responseJson['refresh_token'],
+      'statusCode':userDetails.statusCode,
       'surgeon':responseJson['surgeon'],
     };
   }

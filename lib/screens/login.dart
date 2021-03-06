@@ -34,11 +34,15 @@ class _LoginState extends State<Login> {
       String error = responseJson['error_description'];
       Dialogs.dialog(context,error);
       return;
+    } else if (userResponse['statusCode'] == 200) {
+      LocalStorage.storeLocalStorage('_surgeonId', userResponse['surgeon']['id']);
+      LocalStorage.storeLocalStorage('_token', userResponse['accessToken']);
+      Navigator.pushReplacementNamed(context, '/home');
+    } else {
+      setState(() {
+        loading=false;
+      });
     }
-
-    LocalStorage.storeLocalStorage('_surgeonId', userResponse['surgeon']['id']);
-    LocalStorage.storeLocalStorage('_token', userResponse['accessToken']);
-    Navigator.pushReplacementNamed(context, '/home');
   }
 
   @override

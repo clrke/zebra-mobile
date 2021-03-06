@@ -38,6 +38,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       locale: DevicePreview.locale(context), // Add the locale here
       builder: DevicePreview.appBuilder,
       onGenerateRoute: isAuthenticate ? AuthRoute.generateRoute : NonAuthRoute.generateRoute,

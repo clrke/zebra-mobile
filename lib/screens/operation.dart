@@ -24,8 +24,6 @@ class _OperationState extends State<Operation> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
-
-
     return Container(
       width: width,
       height: height,

@@ -49,19 +49,27 @@ class AppCard extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: height * 0.02, vertical: 0.0),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: theme['secondary'],
-              ),
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
-              child: Text(
-                postCaption,
-                style: TextStyle(
-                  color: Colors.grey[800],
+            width: width * 0.85,
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                width: width * 0.85,
+                margin: EdgeInsets.symmetric(horizontal: height * 0.02),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: theme['secondary'],
+                  ),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: width * 0.03, vertical: height * 0.025),
+                  child: Text(
+                    postCaption,
+                    style: TextStyle(
+                      color: Colors.grey[800],
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -77,7 +85,24 @@ class AppCard extends StatelessWidget {
             child: Image.network(
               '$posteriorPhoto',
               width: width * .75,
+              height: height * 0.40,
               fit: BoxFit.fitWidth,
+              loadingBuilder: (BuildContext context, Widget child,
+                  ImageChunkEvent loadingProgress) {
+                if (loadingProgress == null) return child;
+                return Container(
+                  width: width * .75,
+                  height: height * 0.40,
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                          loadingProgress.expectedTotalBytes
+                          : null,
+                    ),
+                  ),
+                );
+              },
             ),
           ) : Container(),
           SizedBox(height: 20,),
@@ -91,7 +116,24 @@ class AppCard extends StatelessWidget {
             child: Image.network(
               '$anteriorPhoto',
               width: width * .75,
+              height: height * 0.40,
               fit: BoxFit.fitWidth,
+              loadingBuilder: (BuildContext context, Widget child,
+                  ImageChunkEvent loadingProgress) {
+                if (loadingProgress == null) return child;
+                return Container(
+                  width: width * .75,
+                  height: height * 0.40,
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                          loadingProgress.expectedTotalBytes
+                          : null,
+                    ),
+                  ),
+                );
+              },
             ),
           ) :  Container(),
           SizedBox(height: 8.0),

@@ -3,7 +3,7 @@ import 'package:zero_mobile/utils/localStorage.dart';
 
 class HomeProvider extends ChangeNotifier{
   String accessToken;
-  String appBarTitle = 'On Going Operation';
+  String appBarTitle = 'OnGoing Operations';
 
   changeTitle({@required String title}){
     appBarTitle = title;

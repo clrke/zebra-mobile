@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:image_picker/image_picker.dart';
 import '../utils/apiInstance.dart';
 
 class PollRepository {
@@ -29,8 +28,9 @@ class PollRepository {
     return await api.patch(url, data: FormData.fromMap(data));
   }
 
-  static Future savePhoto({@required PickedFile photos,@required String type}) async {
+  static Future savePhoto({@required File photos,@required String type}) async {
     String fileName = photos.path.split('/').last;
+    print(fileName);
     var responsePoll;
 
     if (type == 'anterior_photo') {

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
-import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class PollProvider extends ChangeNotifier{
   List<String> checkList = [];
-  PickedFile anteriorPhoto;
-  PickedFile posteriorPhoto;
+  File anteriorPhoto;
+  File posteriorPhoto;
   String currentPhotoSelected;
   String anteriorPhotoUploadType;
   String posteriorPhotoUploadType;
@@ -19,17 +19,17 @@ class PollProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-  setPhotoSelected({@required String photoType}){
-    currentPhotoSelected = photoType;
+  setPhotoSelected({@required String photo}){
+    currentPhotoSelected = photo;
     notifyListeners();
   }
 
-  anteriorAddPhoto({@required PickedFile imageFile}){
+  anteriorAddPhoto({@required File imageFile}){
     anteriorPhoto = imageFile;
     notifyListeners();
   }
 
-  posteriorAddPhoto({@required PickedFile imageFile}){
+  posteriorAddPhoto({@required File imageFile}){
     posteriorPhoto = imageFile;
     notifyListeners();
   }

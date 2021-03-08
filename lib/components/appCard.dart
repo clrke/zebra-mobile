@@ -64,33 +64,35 @@ class AppCard extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-          width: width * 0.85,
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
+        postCaption.isNotEmpty ? (
+            Container(
               width: width * 0.85,
-              margin: EdgeInsets.symmetric(horizontal: height * 0.02),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: theme['secondary'],
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  width: width * 0.85,
+                  margin: EdgeInsets.symmetric(horizontal: height * 0.02),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: theme['secondary'],
+                    ),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: width * 0.03, vertical: height * 0.02),
+                    child: Text(
+                      postCaption,
+                      style: TextStyle(
+                          color: Colors.grey[800],
+                          fontSize: height * 0.02,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ),
                 ),
-                borderRadius: BorderRadius.circular(10.0),
               ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: width * 0.03, vertical: height * 0.02),
-                child: Text(
-                  postCaption,
-                  style: TextStyle(
-                      color: Colors.grey[800],
-                      fontSize: height * 0.02,
-                      fontWeight: FontWeight.w400),
-                ),
-              ),
-            ),
-          ),
-        ),
+            )
+        ) : Container(),
         Padding(
             padding: anteriorPhoto == null ? EdgeInsets.symmetric(vertical: 12.0) : EdgeInsets.only(top: 12.0),
             child: posteriorPhoto != null

@@ -9,6 +9,7 @@ import 'package:zero_mobile/providers/HomeProvider.dart';
 import 'package:zero_mobile/providers/PollProvider.dart';
 import 'package:zero_mobile/repositories/pollRepository.dart';
 import 'package:zero_mobile/utils/sizeConfig.dart';
+import 'package:zero_mobile/utils/utils.dart';
 
 class CameraViewer extends StatefulWidget {
   @override
@@ -28,15 +29,16 @@ class _CameraViewerState extends State<CameraViewer> {
 
   changePhoto({@required String type}) async{
     final PickedFile pickedFile = await _picker.getImage(source: ImageSource.camera);
+    final compressedImage = await Utils.imageCompression(file: pickedFile);
 
     if (type == 'anterior') {
-      Provider.of<PollProvider>(context,listen: false).anteriorAddPhoto(imageFile: pickedFile);
-      await PollRepository.savePhoto(photos: pickedFile,type: 'anterior_photo');
+      Provider.of<PollProvider>(context,listen: false).anteriorAddPhoto(imageFile: compressedImage);
+      await PollRepository.savePhoto(photos: compressedImage,type: 'anterior_photo');
     }
 
     if (type == 'posterior') {
-      Provider.of<PollProvider>(context,listen: false).posteriorAddPhoto(imageFile: pickedFile);
-      await PollRepository.savePhoto(photos: pickedFile,type: 'posterior_photo');
+      Provider.of<PollProvider>(context,listen: false).posteriorAddPhoto(imageFile: compressedImage);
+      await PollRepository.savePhoto(photos: compressedImage,type: 'posterior_photo');
     }
   }
 
@@ -54,7 +56,6 @@ class _CameraViewerState extends State<CameraViewer> {
     final posteriorPhoto  = Provider.of<PollProvider>(context,listen: true).posteriorPhoto;
     var photo;
     final currentPhotoSelected = Provider.of<PollProvider>(context,listen: true).currentPhotoSelected;
-
 
     if(currentPhotoSelected == 'anterior') {
       photo = anteriorPhoto;

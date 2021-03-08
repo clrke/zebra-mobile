@@ -9,7 +9,7 @@ class AppCaptionField extends StatelessWidget {
 
   AppCaptionField({
     @required this.controller,
-    @required this.onValidate,
+    this.onValidate,
     @required this.hintText,
   });
 

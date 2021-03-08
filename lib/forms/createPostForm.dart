@@ -10,6 +10,8 @@ import 'package:zero_mobile/constants/theme.dart';
 import 'package:zero_mobile/providers/PollProvider.dart';
 import 'package:zero_mobile/repositories/pollRepository.dart';
 import 'package:zero_mobile/utils/dialog.dart';
+import 'package:path/path.dart' as path;
+import 'package:zero_mobile/utils/utils.dart';
 
 class CreatePostForm extends StatefulWidget {
 
@@ -52,49 +54,97 @@ class _CreatePostFormState extends State<CreatePostForm> {
   }
 
   uploadPhoto({@required type}) async{
-    final PickedFile pickedFile = await _picker.getImage(source: ImageSource.gallery);
+    final imageFormats = ['.jpeg','.jpg','.png'];
+
+    final pickedFile = await _picker.getImage(source: ImageSource.gallery,);
     final bool isFileSize = (File(pickedFile.path).lengthSync() > 10000000);
+    final isImage = imageFormats.contains(path.extension(pickedFile.path));
+    final compressedImage = await Utils.imageCompression(file: pickedFile);
 
     if (type == 'anterior') {
+      if(!isImage){
+        setState(() {
+          _anteriorError = 'File extension must be (.jpeg,jpg or .png) only';
+        });
+        return;
+      }
       if(isFileSize) {
         setState(() {
           _anteriorError = 'File must be not greater than 10mb';
         });
         return;
       }
-      Provider.of<PollProvider>(context,listen: false).anteriorAddPhoto(imageFile: pickedFile);
+      Provider.of<PollProvider>(context,listen: false).anteriorAddPhoto(imageFile: compressedImage);
       Provider.of<PollProvider>(context,listen: false).anteriorUploadType(uploadType:'gallery');
-      //await PollRepository.savePhoto(photos: pickedFile,type: 'anterior_photo');
+      Provider.of<PollProvider>(context,listen: false).setPhotoSelected(photo:'anterior');
+      await PollRepository.savePhoto(photos: compressedImage,type: 'anterior_photo');
     }
 
     if (type == 'posterior') {
+      if(!isImage){
+        setState(() {
+          _posteriorError = 'File extension must be (.jpeg,jpg or .png) only';
+        });
+        return;
+      }
       if(isFileSize) {
         setState(() {
           _posteriorError = 'File must be not greater than 10mb';
         });
         return;
       }
-      Provider.of<PollProvider>(context,listen: false).posteriorAddPhoto(imageFile: pickedFile);
+      Provider.of<PollProvider>(context,listen: false).posteriorAddPhoto(imageFile: compressedImage);
       Provider.of<PollProvider>(context,listen: false).posteriorUploadType(uploadType:'gallery');
-      //await PollRepository.savePhoto(photos: pickedFile,type: 'posterior_photo');
+      Provider.of<PollProvider>(context,listen: false).setPhotoSelected(photo:'posterior');
+      await PollRepository.savePhoto(photos: compressedImage,type: 'posterior_photo');
     }
   }
 
   takePhoto({@required type})async{
-    final PickedFile pickedFile = await _picker.getImage(source: ImageSource.camera);
-    Provider.of<PollProvider>(context,listen: false).setPhotoSelected(photoType: type);
+    final imageFormats = ['.jpeg','.jpg','.png'];
+
+    final pickedFile = await _picker.getImage(source: ImageSource.camera,);
+    final bool isFileSize = (File(pickedFile.path).lengthSync() > 10000000);
+    final isImage = imageFormats.contains(path.extension(pickedFile.path));
+    final compressedImage = await Utils.imageCompression(file: pickedFile);
 
     if (type == 'anterior') {
-      Provider.of<PollProvider>(context,listen: false).anteriorAddPhoto(imageFile: pickedFile);
-      Provider.of<PollProvider>(context,listen: false).anteriorUploadType(uploadType:'photo');
-      await PollRepository.savePhoto(photos: pickedFile,type: 'anterior_photo');
+      if(!isImage){
+        setState(() {
+          _anteriorError = 'File extension must be (.jpeg,jpg or .png) only';
+        });
+        return;
+      }
+      if(isFileSize) {
+        setState(() {
+          _anteriorError = 'File must be not greater than 10mb';
+        });
+        return;
+      }
+      Provider.of<PollProvider>(context,listen: false).anteriorAddPhoto(imageFile: compressedImage);
+      Provider.of<PollProvider>(context,listen: false).anteriorUploadType(uploadType:'camera');
+      Provider.of<PollProvider>(context,listen: false).setPhotoSelected(photo:'anterior');
+      await PollRepository.savePhoto(photos: compressedImage,type: 'anterior_photo');
       Navigator.pushReplacementNamed(context, '/camera-viewer');
     }
 
     if (type == 'posterior') {
-      Provider.of<PollProvider>(context,listen: false).posteriorAddPhoto(imageFile: pickedFile);
-      Provider.of<PollProvider>(context,listen: false).posteriorUploadType(uploadType:'photo');
-      await PollRepository.savePhoto(photos: pickedFile,type: 'posterior_photo');
+      if(!isImage){
+        setState(() {
+          _posteriorError = 'File extension must be (.jpeg,jpg or .png) only';
+        });
+        return;
+      }
+      if(isFileSize) {
+        setState(() {
+          _posteriorError = 'File must be not greater than 10mb';
+        });
+        return;
+      }
+      Provider.of<PollProvider>(context,listen: false).posteriorAddPhoto(imageFile: compressedImage);
+      Provider.of<PollProvider>(context,listen: false).posteriorUploadType(uploadType:'camera');
+      Provider.of<PollProvider>(context,listen: false).setPhotoSelected(photo:'posterior');
+      await PollRepository.savePhoto(photos: compressedImage,type: 'posterior_photo');
       Navigator.pushReplacementNamed(context, '/camera-viewer');
     }
   }
@@ -168,11 +218,6 @@ class _CreatePostFormState extends State<CreatePostForm> {
                 ),
                 AppCaptionField(
                   controller: _captionController,
-                  onValidate: (value) {
-                    if (value.isEmpty) {
-                      return 'Caption is required';
-                    }
-                  },
                   hintText: 'Ask your co-surgeons...',
                 ),
                 SizedBox(

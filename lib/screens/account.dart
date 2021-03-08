@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zero_mobile/providers/HomeProvider.dart';
-import 'package:zero_mobile/providers/PollProvider.dart';
 
 class Account extends StatefulWidget {
   @override

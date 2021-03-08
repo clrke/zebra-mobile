@@ -1,10 +1,7 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:zero_mobile/constants/settings.dart';
-import 'package:zero_mobile/utils/localStorage.dart';
 import '../utils/apiInstance.dart';
 
 class PollRepository {

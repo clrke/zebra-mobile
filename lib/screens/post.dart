@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zero_mobile/forms/createPostForm.dart';
-import 'package:zero_mobile/providers/HomeProvider.dart';
 import 'package:zero_mobile/providers/PollProvider.dart';
 import 'package:zero_mobile/repositories/pollRepository.dart';
 import '../components/loader.dart';
@@ -31,7 +30,7 @@ class _PostState extends State<Post> {
     setState(() {
       loading = true;
     });
-    final poll = await PollRepository.savePoll(caption: caption);
+    await PollRepository.savePoll(caption: caption);
     setState(() {
       loading = false;
     });

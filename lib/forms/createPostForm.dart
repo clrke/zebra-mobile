@@ -9,6 +9,7 @@ import 'package:zero_mobile/components/profileIcon.dart';
 import 'package:zero_mobile/constants/theme.dart';
 import 'package:zero_mobile/providers/PollProvider.dart';
 import 'package:zero_mobile/repositories/pollRepository.dart';
+import 'package:zero_mobile/utils/dialog.dart';
 
 class CreatePostForm extends StatefulWidget {
 
@@ -23,6 +24,8 @@ class CreatePostForm extends StatefulWidget {
 class _CreatePostFormState extends State<CreatePostForm> {
   final _formKey = GlobalKey<FormState>();
   final _captionController = TextEditingController();
+  String _anteriorError;
+  String _posteriorError;
 
   Function(String) onSubmit;
 
@@ -34,19 +37,46 @@ class _CreatePostFormState extends State<CreatePostForm> {
     onSubmit(_captionController.value.text);
   }
 
-  uploadPhoto({@required type}) async{
-    final PickedFile pickedFile = await _picker.getImage(source: ImageSource.gallery);
-
+  yesAction({@required String type}){
     if (type == 'anterior') {
-      Provider.of<PollProvider>(context,listen: false).anteriorAddPhoto(imageFile: pickedFile);
-      Provider.of<PollProvider>(context,listen: false).anteriorUploadType(uploadType:'gallery');
-      await PollRepository.savePhoto(photos: pickedFile,type: 'anterior_photo');
+      Provider.of<PollProvider>(context,listen: false).anteriorRemovePhoto();
     }
 
     if (type == 'posterior') {
+      Provider.of<PollProvider>(context,listen: false).posteriorRemovePhoto();
+    }
+  }
+
+  noAction(){
+
+  }
+
+  uploadPhoto({@required type}) async{
+    final PickedFile pickedFile = await _picker.getImage(source: ImageSource.gallery);
+    final bool isFileSize = (File(pickedFile.path).lengthSync() > 10000000);
+
+    if (type == 'anterior') {
+      if(isFileSize) {
+        setState(() {
+          _anteriorError = 'File must be not greater than 10mb';
+        });
+        return;
+      }
+      Provider.of<PollProvider>(context,listen: false).anteriorAddPhoto(imageFile: pickedFile);
+      Provider.of<PollProvider>(context,listen: false).anteriorUploadType(uploadType:'gallery');
+      //await PollRepository.savePhoto(photos: pickedFile,type: 'anterior_photo');
+    }
+
+    if (type == 'posterior') {
+      if(isFileSize) {
+        setState(() {
+          _posteriorError = 'File must be not greater than 10mb';
+        });
+        return;
+      }
       Provider.of<PollProvider>(context,listen: false).posteriorAddPhoto(imageFile: pickedFile);
       Provider.of<PollProvider>(context,listen: false).posteriorUploadType(uploadType:'gallery');
-      await PollRepository.savePhoto(photos: pickedFile,type: 'posterior_photo');
+      //await PollRepository.savePhoto(photos: pickedFile,type: 'posterior_photo');
     }
   }
 
@@ -102,7 +132,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         fit: BoxFit.fitWidth,
                         child: Row(
                           children: [
-                            ProfileIcon(),
+                            ProfileIcon(size: width * 0.10,),
                             SizedBox(width: 12.0,),
                             Text(
                               'ID 1234567890',
@@ -157,7 +187,17 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Anterior View',style: TextStyle(fontSize: fontSize,fontWeight: FontWeight.bold),),
+                            FittedBox(
+                             child: Row(
+                                children: [
+                                  Text('Anterior View',style: TextStyle(fontSize: fontSize,fontWeight: FontWeight.bold),),
+                                  SizedBox(width: 20.0,),
+                                  _anteriorError !=null ? (
+                                      Text('$_anteriorError',style: TextStyle(fontSize: height * 0.02,color: Colors.red,fontWeight: FontWeight.bold),)
+                                  ) : Container()
+                                ],
+                              ),
+                            ),
                             anteriorPhoto !=null ? Container(
                               width: width,
                               height: height * 0.40,
@@ -180,7 +220,13 @@ class _CreatePostFormState extends State<CreatePostForm> {
                                       icon: Icon(Icons.minimize),
                                       iconSize: 50,
                                       onPressed: (){
-                                        Provider.of<PollProvider>(context,listen: false).anteriorRemovePhoto();
+                                        Dialogs.confirmationDialog(
+                                            context: context,
+                                            content: '',
+                                            title: 'Are you sure you want to delete?',
+                                            noAction:noAction,
+                                            yesAction: ()=>yesAction(type: 'anterior')
+                                        );
                                       },
                                       color: Colors.grey,
                                     ),
@@ -246,7 +292,17 @@ class _CreatePostFormState extends State<CreatePostForm> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Posterior View',style: TextStyle(fontSize: fontSize,fontWeight: FontWeight.bold),),
+                            FittedBox(
+                              child: Row(
+                                children: [
+                                  Text('Posterior View',style: TextStyle(fontSize: fontSize,fontWeight: FontWeight.bold),),
+                                  SizedBox(width: 20.0,),
+                                  _posteriorError !=null ? (
+                                      Text('$_posteriorError',style: TextStyle(fontSize: height * 0.02,color: Colors.red,fontWeight: FontWeight.bold),)
+                                  ) : Container()
+                                ],
+                              ),
+                            ),
                             posteriorPhoto !=null ? Container(
                               width: width,
                               height: height * 0.40,
@@ -269,7 +325,13 @@ class _CreatePostFormState extends State<CreatePostForm> {
                                       icon: Icon(Icons.minimize),
                                       iconSize: 50,
                                       onPressed: (){
-                                        Provider.of<PollProvider>(context,listen: false).posteriorRemovePhoto();
+                                        Dialogs.confirmationDialog(
+                                            context: context,
+                                            content: '',
+                                            title: 'Are you sure you want to delete?',
+                                            noAction:noAction,
+                                            yesAction: ()=>yesAction(type: 'posterior')
+                                        );
                                       },
                                       color: Colors.grey,
                                     ),

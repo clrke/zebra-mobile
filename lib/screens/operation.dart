@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:zero_mobile/components/appCard.dart';
 import 'package:zero_mobile/components/loader.dart';
-import 'package:zero_mobile/models/pollModel.dart';
 import 'package:zero_mobile/repositories/pollRepository.dart';
-import 'package:zero_mobile/utils/apiInstance.dart';
 
 class Operation extends StatefulWidget {
   @override
@@ -40,7 +38,7 @@ class _OperationState extends State<Operation> {
                 Jiffy postedTime = Jiffy(posted)..utc();
 
                 return AppCard(
-                  surgeonId: results[index]['surgeon'],
+                  surgeonId: results[index]['surgeon'].toString().substring(0,15),
                   postTime: postedTime.fromNow(),
                   postCaption: results[index]['message_post'],
                   anteriorPhoto: results[index]['anterior_photo'],
@@ -51,7 +49,6 @@ class _OperationState extends State<Operation> {
           } else {
             return Loader(body: Container());
           }
-          return null;
         },
       )
     );

@@ -6,13 +6,17 @@ class ContainerAppBar {
     @required String title,
     @required bool isToggle,
     @required ValueChanged onSwitch,
-    @required VoidCallback iconPress
+    @required VoidCallback iconPress,
+    @required double fontSize
   }) {
     return AppBar(
       centerTitle: true,
-      title: Text(
-        title,
-        style: TextStyle(color: theme['secondary']),
+      title: FittedBox(
+        fit: BoxFit.fitWidth,
+        child: Text(
+          title,
+          style: TextStyle(color: theme['secondary'],fontSize: fontSize),
+        ),
       ),
       actions: [
         Switch(

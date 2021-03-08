@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zero_mobile/components/appButton.dart';
 import 'package:zero_mobile/constants/theme.dart';
-import 'package:zero_mobile/providers/HomeProvider.dart';
 import 'package:zero_mobile/providers/PollProvider.dart';
-import 'package:zero_mobile/screens/post.dart';
 import 'package:zero_mobile/utils/sizeConfig.dart';
 
 class Checklist extends StatefulWidget {

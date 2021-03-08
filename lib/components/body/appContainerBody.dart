@@ -5,6 +5,7 @@ import 'package:zero_mobile/components/functions/appBar.dart';
 import 'package:zero_mobile/components/functions/bottomNavBar.dart';
 import 'package:zero_mobile/providers/HomeProvider.dart';
 import 'package:zero_mobile/utils/routes.dart';
+import 'package:zero_mobile/utils/sizeConfig.dart';
 
 class AppContainerBody extends StatefulWidget {
   @override
@@ -13,7 +14,7 @@ class AppContainerBody extends StatefulWidget {
 
 class _AppContainerBodyState extends State<AppContainerBody> {
   List<Map<String, dynamic>> routeList = [
-    {'route': '/', 'title': 'Operation'},
+    {'route': '/', 'title': 'On Going Operation'},
     {'route': '/call', 'title': 'Emergency Call'},
     {'route': '/post', 'title': 'Create Post'},
     {'route': '/account', 'title': 'Account'}
@@ -27,11 +28,15 @@ class _AppContainerBodyState extends State<AppContainerBody> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    final height = SizeConfig.screenHeight;
+
     return Consumer<HomeProvider>(builder: (context,data,child){
       return Scaffold(
           resizeToAvoidBottomInset: false,
           backgroundColor: Colors.white,
           appBar: ContainerAppBar.appBar(
+              fontSize: height * 0.03,
               title: data.appBarTitle,
               isToggle: isToggle,
               onSwitch: (value) {
@@ -49,6 +54,7 @@ class _AppContainerBodyState extends State<AppContainerBody> {
             onGenerateRoute: AuthRoute.generateRoute,
           ),
           bottomNavigationBar: BottomNavBar.bottomBar(
+            iconSize: height * 0.04,
               currentIndex: _currentIndex,
               onSelectNav: (bottomNavIndex) {
                 data.changeTitle(title: routeList[bottomNavIndex]['title']);

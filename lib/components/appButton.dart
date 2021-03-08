@@ -7,11 +7,13 @@ class AppButton extends StatelessWidget {
   final Function onPressed;
   final String text;
   final EdgeInsets padding;
+  final double elevation;
 
   AppButton({
     @required this.onPressed,
     @required this.text,
-    @required this.padding
+    @required this.padding,
+    this.elevation
   });
 
   @override
@@ -25,6 +27,7 @@ class AppButton extends StatelessWidget {
     return ElevatedButton(
       child: Text(text),
       style: ElevatedButton.styleFrom(
+        elevation: elevation,
         primary: theme['secondary'],
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(width * 0.10),

@@ -9,10 +9,10 @@ class BottomNavBar {
     BottomNavigationBarItem(icon: Icon(Icons.people_rounded), label: ''),
   ];
 
-  static BottomNavigationBar bottomBar({@required int currentIndex,@required ValueChanged onSelectNav}) {
+  static BottomNavigationBar bottomBar({@required int currentIndex,@required ValueChanged onSelectNav,@required double iconSize}) {
     return BottomNavigationBar(
       items: bottomItems,
-      iconSize: 32.0,
+      iconSize: iconSize,
       type: BottomNavigationBarType.fixed,
       selectedItemColor: theme['primary'],
       showUnselectedLabels: false,

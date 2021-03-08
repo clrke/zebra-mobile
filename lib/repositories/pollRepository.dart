@@ -33,26 +33,28 @@ class PollRepository {
   }
 
   static Future savePhoto({@required File photos,@required String type}) async {
-    String fileName = photos.path.split('/').last;
-    print(fileName);
-    var responsePoll;
+    try {
+      String fileName = photos.path.split('/').last;
+      var responsePoll;
 
-    if (type == 'anterior_photo') {
-      responsePoll = await api.patch(url,
-          data: FormData.fromMap({
-            "anterior_photo":
-            await MultipartFile.fromFile(photos.path, filename: fileName)
-          }));
+      if (type == 'anterior_photo') {
+        responsePoll = await api.patch(url,
+            data: FormData.fromMap({
+              "anterior_photo":
+              await MultipartFile.fromFile(photos.path, filename: fileName)
+            }));
+      }
+
+      if (type == 'posterior_photo') {
+        responsePoll = await api.patch(url,
+            data: FormData.fromMap({
+              "posterior_photo":
+              await MultipartFile.fromFile(photos.path, filename: fileName)
+            }));
+      }
+      return responsePoll;
+    } catch(error){
+      print(error);
     }
-
-    if (type == 'posterior_photo') {
-      responsePoll = await api.patch(url,
-          data: FormData.fromMap({
-            "posterior_photo":
-            await MultipartFile.fromFile(photos.path, filename: fileName)
-          }));
-    }
-
-    return responsePoll;
   }
 }

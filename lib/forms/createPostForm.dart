@@ -9,6 +9,7 @@ import 'package:zero_mobile/components/profileIcon.dart';
 import 'package:zero_mobile/constants/theme.dart';
 import 'package:zero_mobile/providers/PollProvider.dart';
 import 'package:zero_mobile/repositories/pollRepository.dart';
+import 'package:zero_mobile/screens/cameraViewer.dart';
 import 'package:zero_mobile/utils/dialog.dart';
 import 'package:path/path.dart' as path;
 import 'package:zero_mobile/utils/utils.dart';
@@ -26,10 +27,23 @@ class CreatePostForm extends StatefulWidget {
 class _CreatePostFormState extends State<CreatePostForm> {
   final _formKey = GlobalKey<FormState>();
   final _captionController = TextEditingController();
+  final Function(String) onSubmit;
+
   String _anteriorError;
   String _posteriorError;
 
-  Function(String) onSubmit;
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _captionController.dispose();
+    _posteriorError = null;
+    _anteriorError = null;
+  }
 
   _CreatePostFormState({@required this.onSubmit});
 
@@ -39,13 +53,15 @@ class _CreatePostFormState extends State<CreatePostForm> {
     onSubmit(_captionController.value.text);
   }
 
-  yesAction({@required String type}){
+  yesAction({@required String type}) async{
     if (type == 'anterior') {
       Provider.of<PollProvider>(context,listen: false).anteriorRemovePhoto();
+      await PollRepository.savePhoto(photos: null,type: 'anterior_photo');
     }
 
     if (type == 'posterior') {
       Provider.of<PollProvider>(context,listen: false).posteriorRemovePhoto();
+      await PollRepository.savePhoto(photos: null,type: 'posterior_photo');
     }
   }
 
@@ -109,6 +125,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
     final compressedImage = await Utils.imageCompression(file: pickedFile);
 
     if (type == 'anterior') {
+      Navigator.pushReplacementNamed(context, '/camera-viewer');
       if(!isImage){
         setState(() {
           _anteriorError = 'File extension must be (.jpeg,jpg or .png) only';
@@ -125,10 +142,10 @@ class _CreatePostFormState extends State<CreatePostForm> {
       Provider.of<PollProvider>(context,listen: false).anteriorUploadType(uploadType:'camera');
       Provider.of<PollProvider>(context,listen: false).setPhotoSelected(photo:'anterior');
       await PollRepository.savePhoto(photos: compressedImage,type: 'anterior_photo');
-      Navigator.pushReplacementNamed(context, '/camera-viewer');
     }
 
     if (type == 'posterior') {
+      Navigator.pushReplacementNamed(context, '/camera-viewer');
       if(!isImage){
         setState(() {
           _posteriorError = 'File extension must be (.jpeg,jpg or .png) only';
@@ -145,7 +162,6 @@ class _CreatePostFormState extends State<CreatePostForm> {
       Provider.of<PollProvider>(context,listen: false).posteriorUploadType(uploadType:'camera');
       Provider.of<PollProvider>(context,listen: false).setPhotoSelected(photo:'posterior');
       await PollRepository.savePhoto(photos: compressedImage,type: 'posterior_photo');
-      Navigator.pushReplacementNamed(context, '/camera-viewer');
     }
   }
 
@@ -157,6 +173,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
     final anteriorPhoto = Provider.of<PollProvider>(context,listen: true).anteriorPhoto;
     final posteriorPhoto = Provider.of<PollProvider>(context,listen: true).posteriorPhoto;
     final photos = (anteriorPhoto != null && posteriorPhoto != null);
+    final uploadType = Provider.of<PollProvider>(context,listen: true).anteriorPhotoUploadType;
 
     return Form(
       key: _formKey,

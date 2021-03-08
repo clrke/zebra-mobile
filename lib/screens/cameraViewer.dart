@@ -27,6 +27,11 @@ class _CameraViewerState extends State<CameraViewer> {
     });
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   changePhoto({@required String type}) async{
     final PickedFile pickedFile = await _picker.getImage(source: ImageSource.camera);
     final compressedImage = await Utils.imageCompression(file: pickedFile);
@@ -69,7 +74,7 @@ class _CameraViewerState extends State<CameraViewer> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
+          photo !=null ? Container(
             width: width * 0.90,
             height: height * 0.50,
             color: Colors.redAccent.withOpacity(0.3),
@@ -80,7 +85,7 @@ class _CameraViewerState extends State<CameraViewer> {
                 fit: BoxFit.fitWidth,
               ),
             ),
-          ),
+          ) : Container(),
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -99,7 +104,7 @@ class _CameraViewerState extends State<CameraViewer> {
                 SizedBox(width: 20.0,),
                 AppButtonOutline(
                     onPressed: (){
-                      if(anteriorPhoto!=null) {
+                      if(currentPhotoSelected!=null) {
                         confirmedPhoto(type: currentPhotoSelected);
                       } else {
                         confirmedPhoto(type: currentPhotoSelected);

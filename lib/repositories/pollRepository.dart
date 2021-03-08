@@ -1,16 +1,20 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:zero_mobile/models/pollModel.dart';
 import '../utils/apiInstance.dart';
 
 class PollRepository {
   static String url = 'current-poll/';
   static Dio api = ApiInstance.apiInstance();
 
-  static Future fetchPolls() async {
+  static Future<List<PollModel>> fetchPolls() async {
     final url = 'polls';
     var responsePolls = await ApiInstance.apiInstance().get(url);
-    return responsePolls.data['results'];
+    List responseJson = responsePolls.data['results'];
+    var polls = responseJson.map((poll) => PollModel.fromJson(poll)).toList();
+    return polls;
   }
 
   static Future createPoll() async {

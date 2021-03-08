@@ -5,17 +5,23 @@ class PollModel extends BaseModel {
   final String messagePost;
   final String anteriorPhoto;
   final String posteriorPhoto;
+  final String updatedAt;
 
   PollModel(
-      {this.surgeon, this.messagePost, this.anteriorPhoto, this.posteriorPhoto})
+      {this.updatedAt,
+      this.surgeon,
+      this.messagePost,
+      this.anteriorPhoto,
+      this.posteriorPhoto})
       : super();
 
   factory PollModel.fromJson(Map<String, dynamic> json) {
     return PollModel(
       surgeon: json['surgeon'],
-      messagePost: json['messagePost'],
-      anteriorPhoto: json['anteriorPhoto'],
-      posteriorPhoto: json['posteriorPhoto'],
+      messagePost: json['message_post'],
+      anteriorPhoto: json['anterior_photo'],
+      posteriorPhoto: json['posterior_photo'],
+      updatedAt: json['updated_at'],
     );
   }
 
@@ -24,5 +30,6 @@ class PollModel extends BaseModel {
         'messagePost': messagePost,
         'anteriorPhoto': anteriorPhoto,
         'posteriorPhoto': posteriorPhoto,
+        'updatedAt': updatedAt
       };
 }

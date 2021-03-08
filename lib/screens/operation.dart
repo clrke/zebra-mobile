@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:zero_mobile/components/appCard.dart';
 import 'package:zero_mobile/components/loader.dart';
+import 'package:zero_mobile/models/pollModel.dart';
 import 'package:zero_mobile/repositories/pollRepository.dart';
 
 class Operation extends StatefulWidget {
@@ -29,20 +30,19 @@ class _OperationState extends State<Operation> {
         future: PollRepository.fetchPolls(),
         builder: (context,data){
           if(data.connectionState == ConnectionState.done) {
-            var results = data.data;
+            List<PollModel> results = data.data;
 
             return ListView.builder(
               itemCount: results.length,
               itemBuilder: (context, index) {
-                final posted = results[index]['updated_at'];
+                final posted = results[index].updatedAt;
                 Jiffy postedTime = Jiffy(posted)..utc();
-
                 return AppCard(
-                  surgeonId: results[index]['surgeon'].toString().substring(0,15),
+                  surgeonId: results[index].surgeon.toString().substring(0,15),
                   postTime: postedTime.fromNow(),
-                  postCaption: results[index]['message_post'],
-                  anteriorPhoto: results[index]['anterior_photo'],
-                  posteriorPhoto: results[index]['posterior_photo'],
+                  postCaption: results[index].messagePost,
+                  anteriorPhoto: results[index].anteriorPhoto,
+                  posteriorPhoto: results[index].posteriorPhoto,
                 );
               },
             );

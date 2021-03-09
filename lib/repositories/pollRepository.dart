@@ -9,6 +9,12 @@ class PollRepository {
   static String url = 'current-poll/';
   static Dio api = ApiInstance.apiInstance();
 
+  static Future<PollModel> fetchPollsById({@required int id}) async {
+    final url = 'polls/$id';
+    var responsePolls = await ApiInstance.apiInstance().get(url);
+    return PollModel.fromJson(responsePolls.data);
+  }
+
   static Future<List<PollModel>> fetchPolls() async {
     final url = 'polls';
     var responsePolls = await ApiInstance.apiInstance().get(url);

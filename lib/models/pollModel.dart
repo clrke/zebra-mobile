@@ -5,18 +5,18 @@ class PollModel extends BaseModel {
   final String messagePost;
   final String anteriorPhoto;
   final String posteriorPhoto;
-  final String updatedAt;
 
-  PollModel(
-      {this.updatedAt,
-      this.surgeon,
+  PollModel({this.surgeon,
       this.messagePost,
       this.anteriorPhoto,
-      this.posteriorPhoto})
-      : super();
+      this.posteriorPhoto,
+      id,
+      updatedAt
+  }) : super(id: id, updatedAt: updatedAt);
 
   factory PollModel.fromJson(Map<String, dynamic> json) {
     return PollModel(
+      id: json['id'],
       surgeon: json['surgeon'],
       messagePost: json['message_post'],
       anteriorPhoto: json['anterior_photo'],

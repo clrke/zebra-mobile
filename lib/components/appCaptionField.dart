@@ -24,7 +24,6 @@ class AppCaptionField extends StatelessWidget {
     final borderRadius = height * 0.02;
 
     return TextFormField(
-      autofocus: true,
       maxLines: null,
       controller: controller,
       autovalidateMode: AutovalidateMode.onUserInteraction,

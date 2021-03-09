@@ -9,6 +9,7 @@ import 'package:zero_mobile/screens/call.dart';
 import 'package:zero_mobile/screens/operation.dart';
 import 'package:zero_mobile/screens/post.dart';
 import 'package:zero_mobile/screens/result.dart';
+import 'package:zero_mobile/screens/vote.dart';
 
 class NonAuthRoute {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -42,6 +43,8 @@ class AuthRoute {
         return MaterialPageRoute(builder: (_)=>Login());
       case '/camera-viewer':
         return MaterialPageRoute(builder: (_)=>CameraViewer());
+      case '/vote':
+        return MaterialPageRoute(builder: (_)=>Vote());
       case '/results':
         return MaterialPageRoute(builder: (_)=>Results());
       default:

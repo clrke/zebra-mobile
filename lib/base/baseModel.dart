@@ -1,5 +1,7 @@
 
 abstract class BaseModel {
-  String id;
-  BaseModel({this.id});
+  final int id;
+  final String updatedAt;
+
+  BaseModel({this.id,this.updatedAt});
 }

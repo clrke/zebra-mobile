@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:zero_mobile/components/appContainer.dart';
 import 'package:zero_mobile/providers/HomeProvider.dart';
 import 'package:zero_mobile/providers/PollProvider.dart';
+import 'package:zero_mobile/providers/VoteProvider.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -21,6 +22,9 @@ class _HomeState extends State<Home> {
         ChangeNotifierProvider(
           create: (context) => PollProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => VoteProvider(),
+        )
       ],
       child: AppContainer(),
     );

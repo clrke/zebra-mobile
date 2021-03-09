@@ -30,10 +30,13 @@ class _PostState extends State<Post> {
     setState(() {
       loading = true;
     });
+
     await PollRepository.savePoll(caption: caption);
+
     setState(() {
       loading = false;
     });
+
     Provider.of<PollProvider>(context,listen: false).resetFields();
     Navigator.pushReplacementNamed(context, '/results');
   }

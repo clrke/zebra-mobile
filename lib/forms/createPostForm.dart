@@ -9,7 +9,6 @@ import 'package:zero_mobile/components/profileIcon.dart';
 import 'package:zero_mobile/constants/theme.dart';
 import 'package:zero_mobile/providers/PollProvider.dart';
 import 'package:zero_mobile/repositories/pollRepository.dart';
-import 'package:zero_mobile/screens/cameraViewer.dart';
 import 'package:zero_mobile/utils/dialog.dart';
 import 'package:path/path.dart' as path;
 import 'package:zero_mobile/utils/utils.dart';
@@ -173,7 +172,6 @@ class _CreatePostFormState extends State<CreatePostForm> {
     final anteriorPhoto = Provider.of<PollProvider>(context,listen: true).anteriorPhoto;
     final posteriorPhoto = Provider.of<PollProvider>(context,listen: true).posteriorPhoto;
     final photos = (anteriorPhoto != null && posteriorPhoto != null);
-    final uploadType = Provider.of<PollProvider>(context,listen: true).anteriorPhotoUploadType;
 
     return Form(
       key: _formKey,
@@ -272,7 +270,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                                       File(anteriorPhoto.path.toString()),
                                       width: width,
                                       height: height * 0.40,
-                                      fit: BoxFit.cover,
+                                      fit: BoxFit.fitHeight,
                                     ),
                                   ),
                                   Positioned(
@@ -378,7 +376,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                                       File(posteriorPhoto.path.toString()),
                                       width: width,
                                       height: height * 0.40,
-                                      fit: BoxFit.fitWidth,
+                                      fit: BoxFit.fitHeight,
                                     ),
                                   ),
                                   Positioned(

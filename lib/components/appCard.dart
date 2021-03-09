@@ -118,7 +118,7 @@ class AppCard extends StatelessWidget {
                         '$anteriorPhoto',
                         width: width * .75,
                         height: height * 0.40,
-                        fit: BoxFit.fitWidth,
+                        fit: BoxFit.cover,
                         loadingBuilder: (BuildContext context, Widget child,
                             ImageChunkEvent loadingProgress) {
                           if (loadingProgress == null) return child;
@@ -164,7 +164,7 @@ class AppCard extends StatelessWidget {
                         '$posteriorPhoto',
                         width: width * .75,
                         height: height * 0.40,
-                        fit: BoxFit.fitWidth,
+                        fit: BoxFit.cover,
                         loadingBuilder: (BuildContext context, Widget child,
                             ImageChunkEvent loadingProgress) {
                           if (loadingProgress == null) return child;

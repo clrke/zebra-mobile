@@ -6,6 +6,7 @@ import 'package:zero_mobile/components/functions/bottomNavBar.dart';
 import 'package:zero_mobile/providers/HomeProvider.dart';
 import 'package:zero_mobile/utils/routes.dart';
 import 'package:zero_mobile/utils/sizeConfig.dart';
+import 'package:zero_mobile/utils/utils.dart';
 
 class AppContainerBody extends StatefulWidget {
   @override
@@ -13,16 +14,9 @@ class AppContainerBody extends StatefulWidget {
 }
 
 class _AppContainerBodyState extends State<AppContainerBody> {
-  List<Map<String, dynamic>> routeList = [
-    {'route': '/', 'title': 'On Going Operation'},
-    {'route': '/call', 'title': 'Emergency Call'},
-    {'route': '/post', 'title': 'Create Post'},
-    {'route': '/account', 'title': 'Account'}
-  ];
+  List<Map<String, dynamic>> routeList = Utils.bottomNavigationRoutes();
 
   bool isToggle = false;
-
-  int _currentIndex = 0;
 
   final _navigatorKey = GlobalKey<NavigatorState>();
 
@@ -30,6 +24,7 @@ class _AppContainerBodyState extends State<AppContainerBody> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     final height = SizeConfig.screenHeight;
+    int _currentIndex = Provider.of<HomeProvider>(context,listen: true).currentIndex;
 
     return Consumer<HomeProvider>(builder: (context,data,child){
       return Scaffold(
@@ -57,12 +52,8 @@ class _AppContainerBodyState extends State<AppContainerBody> {
             iconSize: height * 0.04,
               currentIndex: _currentIndex,
               onSelectNav: (bottomNavIndex) {
-                data.changeTitle(title: routeList[bottomNavIndex]['title']);
-                setState(() {
-                  _currentIndex = bottomNavIndex;
-                });
-                _navigatorKey.currentState.pushReplacementNamed(
-                    routeList[bottomNavIndex]['route']);
+                Provider.of<HomeProvider>(context,listen: false).setCurrentIndex(index: bottomNavIndex);
+                _navigatorKey.currentState.pushReplacementNamed(routeList[bottomNavIndex]['route']);
               }
           )
       );

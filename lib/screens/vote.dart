@@ -53,13 +53,14 @@ class _VoteState extends State<Vote> {
 
     final id = Provider.of<VoteProvider>(context, listen: false).selectedPollId;
     final String remark = _remarksController.value.text;
-    await VoteRepository.surgeonVote(id: id,vote: vote,remark: remark);
+    //await VoteRepository.surgeonVote(id: id,vote: vote,remark: remark);
 
     setState(() {
       loading = false;
     });
 
     Navigator.pushReplacementNamed(context, '/');
+    Provider.of<HomeProvider>(context,listen: false).setCurrentIndex(index: 0);
   }
 
   @override
@@ -84,104 +85,106 @@ class _VoteState extends State<Vote> {
           );
         },
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                  child: FutureBuilder(
-                    future: poll,
-                    builder: (context, data) {
-                      if (data.connectionState == ConnectionState.done) {
-                        PollModel results = data.data;
-                        return AppCard(
-                          anteriorPhoto: results.anteriorPhoto,
-                          posteriorPhoto: results.posteriorPhoto,
-                        );
-                      } else {
-                        return Loader(body: Container());
-                      }
-                    },
-                  )),
-              Container(
-                width: width * 0.75,
-                child: FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: Text(
-                      'Have we achieved a Critical View of Safety?',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )
-                ),
-              ),
-              FittedBox(
-                fit: BoxFit.fitWidth,
-                child: Container(
-                    width: width * 0.75,
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 40,
-                          child: Row(
+          child: FutureBuilder(
+            future: poll,
+            builder: (context, data) {
+              if (data.connectionState == ConnectionState.done) {
+                PollModel results = data.data;
+                return Column(
+                  children: [
+                    AppCard(
+                      anteriorPhoto: results.anteriorPhoto,
+                      posteriorPhoto: results.posteriorPhoto,
+                    ),
+                    Container(
+                      width: width * 0.75,
+                      child: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(
+                            'Have we achieved a Critical View of Safety?',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )
+                      ),
+                    ),
+                    FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Container(
+                          width: width * 0.75,
+                          child: Column(
                             children: [
-                              Radio(
-                                materialTapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap,
-                                value: 'y',
-                                groupValue: selectedRadio,
-                                onChanged: (value) {
-                                  selectedRadio = value;
-                                  setState(() {
-                                    vote = 'y';
-                                  });
-                                },
+                              Container(
+                                height: 40,
+                                child: Row(
+                                  children: [
+                                    Radio(
+                                      materialTapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
+                                      value: 'y',
+                                      groupValue: selectedRadio,
+                                      onChanged: (value) {
+                                        selectedRadio = value;
+                                        setState(() {
+                                          vote = 'y';
+                                        });
+                                      },
+                                    ),
+                                    Text('Yes',style: TextStyle(fontSize: height * 0.018,fontWeight: FontWeight.w600),),
+                                  ],
+                                ),
                               ),
-                              Text('Yes',style: TextStyle(fontSize: height * 0.018,fontWeight: FontWeight.w600),),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: 20,
-                          child: Row(
-                            children: [
-                              Radio(
-                                materialTapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap,
-                                value: 'n',
-                                groupValue: selectedRadio,
-                                onChanged: (value) {
-                                  selectedRadio = value;
-                                  setState(() {
-                                    vote = 'n';
-                                  });
-                                },
+                              Container(
+                                height: 20,
+                                child: Row(
+                                  children: [
+                                    Radio(
+                                      materialTapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
+                                      value: 'n',
+                                      groupValue: selectedRadio,
+                                      onChanged: (value) {
+                                        selectedRadio = value;
+                                        setState(() {
+                                          vote = 'n';
+                                        });
+                                      },
+                                    ),
+                                    Text('No',style: TextStyle(fontSize: height * 0.018,fontWeight: FontWeight.w600),),
+                                  ],
+                                ),
                               ),
-                              Text('No',style: TextStyle(fontSize: height * 0.018,fontWeight: FontWeight.w600),),
+                              SizedBox(height: height * 0.02,),
+                              Container(
+                                child: AppCaptionField(
+                                  controller: _remarksController,
+                                  hintText: 'Ask your co-surgeons...',
+                                ),
+                              ),
+                              SizedBox(height: height * 0.02,),
+                              AppButton(
+                                  onPressed: actionVote,
+                                  text: 'Submit',
+                                  padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 32.0)
+                              )
                             ],
-                          ),
-                        ),
-                        SizedBox(height: height * 0.02,),
-                        Container(
-                          child: AppCaptionField(
-                            controller: _remarksController,
-                            hintText: 'Ask your co-surgeons...',
-                          ),
-                        ),
-                        SizedBox(height: height * 0.02,),
-                        AppButton(
-                            onPressed: actionVote,
-                            text: 'Submit',
-                            padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 32.0)
-                        )
-                      ],
-                    )),
-              ),
-            ],
+                          )),
+                    ),
+                  ],
+                );
+              } else {
+                return Loader(body: Container());
+              }
+            },
           ),
         ),
       ),
     );
-
     var bodyProgress = Loader(body: body);
-    return Container(
-        child: loading ? bodyProgress : body
+
+    return Scaffold(
+      resizeToAvoidBottomInset:true,
+      body: Container(
+          child: loading ? bodyProgress : body
+      ),
     );
   }
 }

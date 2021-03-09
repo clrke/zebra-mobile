@@ -14,4 +14,14 @@ class Utils{
     File compressedImage = File(file.path)..writeAsBytesSync(result);
     return compressedImage;
   }
+
+  static List<Map<String,dynamic>> bottomNavigationRoutes() {
+    List<Map<String, dynamic>> routeList = [
+      {'route': '/', 'title': 'On Going Operation'},
+      {'route': '/call', 'title': 'Emergency Call'},
+      {'route': '/post', 'title': 'Create Post'},
+      {'route': '/account', 'title': 'Account'}
+    ];
+    return routeList;
+  }
 }

@@ -21,7 +21,9 @@ class _OperationState extends State<Operation> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_){
-      fetchPolls();
+      Future.delayed(Duration(seconds: 1),(){
+        fetchPolls();
+      });
     });
   }
 

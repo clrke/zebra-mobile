@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import '../constants/theme.dart';
 
 class ProfileIcon extends StatelessWidget {
-
+  final MaterialColor color;
   final double size;
 
-  ProfileIcon({this.size});
+  ProfileIcon({this.size,this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +18,10 @@ class ProfileIcon extends StatelessWidget {
       decoration: new BoxDecoration(
         borderRadius: new BorderRadius.all(new Radius.circular(50.0)),
         border: new Border.all(
-          color: theme['secondary'],
+          color: Colors.grey[500],
           width: 1.5,
         ),
       ),
-
     );
   }
 }

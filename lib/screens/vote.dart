@@ -53,7 +53,8 @@ class _VoteState extends State<Vote> {
 
     final id = Provider.of<VoteProvider>(context, listen: false).selectedPollId;
     final String remark = _remarksController.value.text;
-    //await VoteRepository.surgeonVote(id: id,vote: vote,remark: remark);
+
+    await VoteRepository.surgeonVote(id: id,vote: vote,remark: remark);
 
     setState(() {
       loading = false;

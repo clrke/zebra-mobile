@@ -37,6 +37,7 @@ class _LoginState extends State<Login> {
     } else if (userResponse['statusCode'] == 200) {
       LocalStorage.storeLocalStorage('_surgeonId', userResponse['surgeon']['id']);
       LocalStorage.storeLocalStorage('_token', userResponse['accessToken']);
+      LocalStorage.storeLocalStorage('_refreshToken', userResponse['refreshToken']);
       Navigator.pushReplacementNamed(context, '/home');
     } else {
       setState(() {

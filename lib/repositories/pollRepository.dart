@@ -2,11 +2,18 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:zero_mobile/models/pollModel.dart';
+import 'package:zero_mobile/models/voteModel.dart';
 import '../utils/apiInstance.dart';
 
 class PollRepository {
   static String url = 'current-poll/';
   static Dio api = ApiInstance.apiInstance();
+
+  static Future<VoteModel> fetchVotes() async {
+    final url = 'current-poll';
+    var responsePolls = await ApiInstance.apiInstance().get(url);
+    return VoteModel.fromJson(responsePolls.data);
+  }
 
   static Future<PollModel> fetchPollsById({@required int id}) async {
     final url = 'polls/$id';

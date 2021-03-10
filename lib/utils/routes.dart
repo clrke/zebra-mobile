@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:zero_mobile/providers/VoteProvider.dart';
 import 'package:zero_mobile/screens/cameraViewer.dart';
 import 'package:zero_mobile/screens/checklist.dart';
 import 'package:zero_mobile/screens/home.dart';
@@ -34,7 +36,14 @@ class AuthRoute {
       case '/checklist':
         return MaterialPageRoute(builder: (_)=>Checklist());
       case '/post':
-        return MaterialPageRoute(builder: (_)=>Post());
+        return MaterialPageRoute(builder: (context){
+          int count = Provider.of<VoteProvider>(context).votes.length;
+          if(count > 0) {
+            return Results();
+          } else {
+            return Post();
+          }
+        });
       case '/call':
         return MaterialPageRoute(builder: (_)=>Call());
       case '/account':

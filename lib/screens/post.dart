@@ -44,7 +44,7 @@ class _PostState extends State<Post> {
   @override
   Widget build(BuildContext context) {
     var body = CreatePostForm(onSubmit: onSubmit);
-    var bodyProgress = Loader(body: body);
+    var bodyProgress = Loader(body: Container());
 
     return Container(
         child: loading ? bodyProgress : body

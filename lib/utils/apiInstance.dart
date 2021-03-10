@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:zero_mobile/constants/settings.dart';
+import 'package:zero_mobile/repositories/userRepository.dart';
 import 'package:zero_mobile/utils/localStorage.dart';
 
 class ApiInstance {
@@ -16,7 +17,13 @@ class ApiInstance {
           return response;
         },
         onError: (DioError e) async {
-          return e.response;
+          if(e.response.statusCode == 401) {
+            String refreshToken = await LocalStorage.readLocalStorage('_refreshToken');
+            Map<String,dynamic> userResponse = await UserRepository.refreshToken(refreshToken: refreshToken);
+            LocalStorage.storeLocalStorage('_token', userResponse['accessToken']);
+            LocalStorage.storeLocalStorage('_refreshToken', userResponse['refreshToken']);
+          }
+          return e.message;
         }
     ));
     return dio;

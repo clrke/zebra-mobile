@@ -270,7 +270,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                                       File(anteriorPhoto.path.toString()),
                                       width: width,
                                       height: height * 0.40,
-                                      fit: BoxFit.fitHeight,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                   Positioned(
@@ -376,7 +376,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                                       File(posteriorPhoto.path.toString()),
                                       width: width,
                                       height: height * 0.40,
-                                      fit: BoxFit.fitHeight,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                   Positioned(

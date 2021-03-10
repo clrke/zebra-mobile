@@ -21,6 +21,9 @@ class _ChecklistState extends State<Checklist> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      Provider.of<HomeProvider>(context,listen: false).changeTitle(title:'Checklist');
+    });
   }
 
   @override

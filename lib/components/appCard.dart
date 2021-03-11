@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zero_mobile/constants/theme.dart';
 import 'package:zero_mobile/components/profileIcon.dart';
 import 'appButton.dart';
+import 'appCustomPainter/labelAndVote.dart';
 
 class AppCard extends StatelessWidget {
   final String surgeonId;
@@ -11,14 +12,13 @@ class AppCard extends StatelessWidget {
   final String anteriorPhoto;
   final Function onPress;
 
-  AppCard({
-      this.surgeonId,
+  AppCard(
+      {this.surgeonId,
       this.postTime,
       this.postCaption,
       @required this.posteriorPhoto,
       @required this.anteriorPhoto,
-      this.onPress
-  });
+      this.onPress});
 
   @override
   Widget build(BuildContext context) {
@@ -28,46 +28,48 @@ class AppCard extends StatelessWidget {
 
     return Column(
       children: <Widget>[
-        surgeonId !=null && postTime !=null ? Container(
-          width: width * 0.78,
-          padding: EdgeInsets.only(bottom: 16.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  ProfileIcon(
-                    size: width * 0.15,
-                  ),
-                  SizedBox(
-                    width: 12,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'ID $surgeonId',
-                        style: TextStyle(
-                          color: theme['secondary'],
-                          fontSize: fontSize * .9,
-                          fontWeight: FontWeight.bold,
+        surgeonId != null && postTime != null
+            ? Container(
+                width: width * 0.78,
+                padding: EdgeInsets.only(bottom: 16.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        ProfileIcon(
+                          size: width * 0.15,
                         ),
-                      ),
-                      Text(
-                        postTime,
-                        style: TextStyle(
-                          color: theme['secondary'],
-                          fontSize: fontSize * .8,
-                          fontWeight: FontWeight.w200,
+                        SizedBox(
+                          width: 12,
                         ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ],
-          ),
-        ) : Container(),
-        postCaption !=null
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'ID $surgeonId',
+                              style: TextStyle(
+                                color: theme['secondary'],
+                                fontSize: fontSize * .9,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              postTime,
+                              style: TextStyle(
+                                color: theme['secondary'],
+                                fontSize: fontSize * .8,
+                                fontWeight: FontWeight.w200,
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            : Container(),
+        postCaption != null
             ? (Container(
                 width: width * 0.85,
                 child: Align(
@@ -97,7 +99,9 @@ class AppCard extends StatelessWidget {
               ))
             : Container(),
         Padding(
-          padding: anteriorPhoto == null ? EdgeInsets.symmetric(vertical: 12.0) : EdgeInsets.only(top: 12.0),
+          padding: anteriorPhoto == null
+              ? EdgeInsets.symmetric(vertical: 12.0)
+              : EdgeInsets.only(top: 12.0),
           child: anteriorPhoto != null
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,28 +118,51 @@ class AppCard extends StatelessWidget {
                           width: 5.0,
                         ),
                       ),
-                      child: Image.network(
-                        '$anteriorPhoto',
-                        width: width * .75,
-                        height: height * 0.40,
-                        fit: BoxFit.cover,
-                        loadingBuilder: (BuildContext context, Widget child,
-                            ImageChunkEvent loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return Container(
+                      child: Stack(
+                        children: <Widget>[
+                          Image.network(
+                            '$anteriorPhoto',
                             width: width * .75,
                             height: height * 0.40,
-                            child: Center(
-                              child: CircularProgressIndicator(
-                                value: loadingProgress.expectedTotalBytes !=
-                                        null
-                                    ? loadingProgress.cumulativeBytesLoaded /
-                                        loadingProgress.expectedTotalBytes
-                                    : null,
+                            fit: BoxFit.cover,
+                            loadingBuilder: (BuildContext context, Widget child,
+                                ImageChunkEvent loadingProgress) {
+                              if (loadingProgress == null) return child;
+                              return Container(
+                                width: width * .75,
+                                height: height * 0.40,
+                                child: Center(
+                                  child: CircularProgressIndicator(
+                                    value: loadingProgress.expectedTotalBytes !=
+                                            null
+                                        ? loadingProgress
+                                                .cumulativeBytesLoaded /
+                                            loadingProgress.expectedTotalBytes
+                                        : null,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                          Positioned(
+                            right: 5.0,
+                            bottom: 5.0,
+                            child: FloatingActionButton(
+                              mini: true,
+                              child: Icon(
+                                Icons.create_sharp,
+                                color: Colors.grey[500],
+                                size: 30.0,
                               ),
+                              backgroundColor: Colors.white,
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => LabelAndVote(
+                                        imageSource: '$anteriorPhoto')));
+                              },
                             ),
-                          );
-                        },
+                          ),
+                        ],
                       ),
                     )
                   ],
@@ -160,50 +187,77 @@ class AppCard extends StatelessWidget {
                           width: 5.0,
                         ),
                       ),
-                      child: Image.network(
-                        '$posteriorPhoto',
-                        width: width * .75,
-                        height: height * 0.40,
-                        fit: BoxFit.cover,
-                        loadingBuilder: (BuildContext context, Widget child,
-                            ImageChunkEvent loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return Container(
+                      child: Stack(
+                        children: <Widget>[
+                          Image.network(
+                            '$posteriorPhoto',
                             width: width * .75,
                             height: height * 0.40,
-                            child: Center(
-                              child: CircularProgressIndicator(
-                                value: loadingProgress.expectedTotalBytes !=
-                                        null
-                                    ? loadingProgress.cumulativeBytesLoaded /
-                                        loadingProgress.expectedTotalBytes
-                                    : null,
+                            fit: BoxFit.cover,
+                            loadingBuilder: (BuildContext context, Widget child,
+                                ImageChunkEvent loadingProgress) {
+                              if (loadingProgress == null) return child;
+                              return Container(
+                                width: width * .75,
+                                height: height * 0.40,
+                                child: Center(
+                                  child: CircularProgressIndicator(
+                                    value: loadingProgress.expectedTotalBytes !=
+                                            null
+                                        ? loadingProgress
+                                                .cumulativeBytesLoaded /
+                                            loadingProgress.expectedTotalBytes
+                                        : null,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                          Positioned(
+                            right: 5.0,
+                            bottom: 5.0,
+                            child: FloatingActionButton(
+                              mini: true,
+                              child: Icon(
+                                Icons.create_sharp,
+                                color: Colors.grey[500],
+                                size: 30.0,
                               ),
+                              backgroundColor: Colors.white,
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => LabelAndVote(
+                                        imageSource: '$posteriorPhoto')));
+                              },
                             ),
-                          );
-                        },
+                          ),
+                        ],
                       ),
                     )
                   ],
                 )
               : Container(),
         ),
-        onPress !=null ? Padding(
-          padding: EdgeInsets.only(bottom: 12.0),
-          child: AppButton(
-            elevation: 10.0,
-            onPressed: onPress,
-            text: 'Vote',
-            padding: EdgeInsets.symmetric(
-                horizontal: width * 0.1, vertical: height * 0.015),
-          ),
-        ) : Container(),
-        surgeonId !=null ? Divider(
-          height: 20,
-          thickness: 5,
-          indent: 20,
-          endIndent: 20,
-        ) : Container(),
+        onPress != null
+            ? Padding(
+                padding: EdgeInsets.only(bottom: 12.0),
+                child: AppButton(
+                  elevation: 10.0,
+                  onPressed: onPress,
+                  text: 'Vote',
+                  padding: EdgeInsets.symmetric(
+                      horizontal: width * 0.1, vertical: height * 0.015),
+                ),
+              )
+            : Container(),
+        surgeonId != null
+            ? Divider(
+                height: 20,
+                thickness: 5,
+                indent: 20,
+                endIndent: 20,
+              )
+            : Container(),
       ],
     );
   }

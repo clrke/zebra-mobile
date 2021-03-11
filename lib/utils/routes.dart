@@ -10,7 +10,8 @@ import 'package:zero_mobile/screens/account.dart';
 import 'package:zero_mobile/screens/call.dart';
 import 'package:zero_mobile/screens/operation.dart';
 import 'package:zero_mobile/screens/post.dart';
-import 'package:zero_mobile/screens/result.dart';
+import 'package:zero_mobile/screens/result/result.dart';
+import 'package:zero_mobile/screens/result/seeMore.dart';
 import 'package:zero_mobile/screens/vote.dart';
 
 class NonAuthRoute {
@@ -37,7 +38,9 @@ class AuthRoute {
         return MaterialPageRoute(builder: (_)=>Checklist());
       case '/post':
         return MaterialPageRoute(builder: (context){
-          int count = Provider.of<VoteProvider>(context).votes.length;
+          List voters = Provider.of<VoteProvider>(context,listen: true).votes;
+          int count = voters.length;
+
           if(count > 0) {
             return Results();
           } else {
@@ -56,6 +59,8 @@ class AuthRoute {
         return MaterialPageRoute(builder: (_)=>Vote());
       case '/results':
         return MaterialPageRoute(builder: (_)=>Results());
+      case '/results/see-more':
+        return MaterialPageRoute(builder: (_)=>SeeMoreResults());
       default:
         return throw Exception('Invalid route: ${settings.name}');
     }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zero_mobile/components/appButton.dart';
+import 'package:zero_mobile/components/appCaptionField.dart';
 import 'package:zero_mobile/constants/theme.dart';
 import 'package:zero_mobile/providers/HomeProvider.dart';
 import 'package:zero_mobile/providers/PollProvider.dart';
@@ -18,12 +19,20 @@ class _ChecklistState extends State<Checklist> {
   bool item3 = false;
   List<String> checkList = [];
 
+  final remarksController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_){
       Provider.of<HomeProvider>(context,listen: false).changeTitle(title:'Checklist');
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    remarksController.dispose();
   }
 
   @override
@@ -158,6 +167,20 @@ class _ChecklistState extends State<Checklist> {
                 ),
               ),
             ),
+            SizedBox(height: 12.0,),
+            Text('Remarks',
+              style: TextStyle(
+                  fontSize: height * 0.02,
+                  fontWeight: FontWeight.bold,
+                  color: theme['secondary']
+              ),
+            ),
+            SizedBox(height: 8.0,),
+            AppCaptionField(
+              controller: remarksController,
+              hintText: '',
+              fillColor: Colors.white,
+            ),
             SizedBox(height: 20.0,),
             Center(
               child: AppButton(
@@ -168,7 +191,7 @@ class _ChecklistState extends State<Checklist> {
                       Navigator.pushReplacementNamed(context, '/');
                     }
                   },
-                  text: 'Submit',
+                  text: 'Finish',
                   padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 32.0)
               ),
             )

@@ -5,6 +5,7 @@ import 'package:zero_mobile/components/appButton.dart';
 import 'package:zero_mobile/components/appCaptionField.dart';
 import 'package:zero_mobile/components/appCard.dart';
 import 'package:zero_mobile/components/loader.dart';
+import 'package:zero_mobile/constants/theme.dart';
 import 'package:zero_mobile/models/pollModel.dart';
 import 'package:zero_mobile/providers/HomeProvider.dart';
 import 'package:zero_mobile/providers/VoteProvider.dart';
@@ -154,10 +155,22 @@ class _VoteState extends State<Vote> {
                                 ),
                               ),
                               SizedBox(height: height * 0.02,),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Text('Remarks',
+                                  style: TextStyle(
+                                      fontSize: height * 0.018,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: height * 0.01,),
                               Container(
                                 child: AppCaptionField(
                                   controller: _remarksController,
-                                  hintText: 'Ask your co-surgeons...',
+                                  hintText: '',
+                                  fillColor: Colors.white,
                                 ),
                               ),
                               SizedBox(height: height * 0.02,),

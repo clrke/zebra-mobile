@@ -31,7 +31,6 @@ class _OperationState extends State<Operation> {
 
   void fetchVotes() async{
     VoteModel votes = await PollRepository.fetchVotes();
-    print(votes.votes);
     Provider.of<VoteProvider>(context,listen: false).setVotes(vote: votes.votes);
   }
 

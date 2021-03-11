@@ -6,11 +6,13 @@ class AppCaptionField extends StatelessWidget {
   final controller;
   final Function(String) onValidate;
   final String hintText;
+  final Color fillColor;
 
   AppCaptionField({
     @required this.controller,
     this.onValidate,
     @required this.hintText,
+    @required this.fillColor
   });
 
   @override
@@ -30,7 +32,7 @@ class AppCaptionField extends StatelessWidget {
       validator: onValidate,
       style: TextStyle(fontSize: fontSize),
       decoration: InputDecoration(
-        fillColor: Colors.blueGrey.withOpacity(0.5),
+        fillColor: fillColor,
         filled: true,
         contentPadding:EdgeInsets.symmetric(
             vertical: width * 0.05,

@@ -17,6 +17,7 @@ class VoteProvider extends ChangeNotifier{
 
   resetFields(){
     selectedPollId = null;
+    votes = [];
     notifyListeners();
   }
 }

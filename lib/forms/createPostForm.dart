@@ -234,6 +234,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                 AppCaptionField(
                   controller: _captionController,
                   hintText: 'Ask your co-surgeons...',
+                  fillColor: Colors.grey[400],
                 ),
                 SizedBox(
                   height: height * 0.06,

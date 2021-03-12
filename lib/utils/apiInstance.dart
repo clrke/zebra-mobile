@@ -23,7 +23,7 @@ class ApiInstance {
             LocalStorage.storeLocalStorage('_token', userResponse['accessToken']);
             LocalStorage.storeLocalStorage('_refreshToken', userResponse['refreshToken']);
           }
-          return e.message;
+          return e;
         }
     ));
     return dio;

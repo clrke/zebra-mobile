@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:zero_mobile/components/appCard.dart';
 import 'package:zero_mobile/components/loader.dart';
 import 'package:zero_mobile/models/pollModel.dart';
-import 'package:zero_mobile/models/voteModel.dart';
+import 'package:zero_mobile/providers/PollProvider.dart';
 import 'package:zero_mobile/providers/VoteProvider.dart';
 import 'package:zero_mobile/repositories/pollRepository.dart';
 
@@ -24,14 +24,14 @@ class _OperationState extends State<Operation> {
     WidgetsBinding.instance.addPostFrameCallback((_){
       Future.delayed(Duration(seconds: 1),(){
         fetchPolls();
-        fetchVotes();
+        fetchSurgeonPoll();
       });
     });
   }
 
-  void fetchVotes() async{
-    VoteModel votes = await PollRepository.fetchVotes();
-    Provider.of<VoteProvider>(context,listen: false).setVotes(vote: votes.votes);
+  void fetchSurgeonPoll() async{
+    PollModel poll = await PollRepository.fetchCurrentPoll();
+    Provider.of<PollProvider>(context,listen: false).setCurrentPoll(poll: poll);
   }
 
   void fetchPolls() async{
@@ -62,7 +62,7 @@ class _OperationState extends State<Operation> {
                 return Future.delayed(
                   Duration(seconds: 1),
                   () {
-                    fetchVotes();
+                    fetchSurgeonPoll();
                     setState(() {
                       polls = PollRepository.fetchPolls();
                     });

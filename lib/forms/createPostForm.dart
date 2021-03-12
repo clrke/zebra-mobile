@@ -264,7 +264,6 @@ class _CreatePostFormState extends State<CreatePostForm> {
                               height: height * 0.40,
                               color: Colors.redAccent.withOpacity(0.3),
                               child: Stack(
-                                alignment: Alignment.topRight,
                                 children: [
                                   Positioned(
                                     child: Image.file(
@@ -274,41 +273,61 @@ class _CreatePostFormState extends State<CreatePostForm> {
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  Positioned(
-                                    width: 70,
-                                    height:650,
-                                    bottom: 0,
-                                    child: IconButton(
-                                      icon: Icon(Icons.minimize),
-                                      iconSize: 50,
-                                      onPressed: (){
-                                        Dialogs.confirmationDialog(
-                                            context: context,
-                                            content: '',
-                                            title: 'Are you sure you want to delete?',
-                                            noAction:noAction,
-                                            yesAction: ()=>yesAction(type: 'anterior')
-                                        );
-                                      },
-                                      color: Colors.grey,
+                                  Align(
+                                    alignment: Alignment.topRight,
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8),
+                                      child: Container(
+                                        height: height * 0.06,
+                                        width: width * 0.11,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(40.0),
+                                            color: Colors.white
+                                        ),
+                                        child: IconButton(
+                                          padding: EdgeInsets.all(0),
+                                          icon: Icon(Icons.cancel_rounded,color: Colors.grey,),
+                                          iconSize: height * 0.05,
+                                          onPressed: (){
+                                            Dialogs.confirmationDialog(
+                                                context: context,
+                                                content: '',
+                                                title: 'Are you sure you want to delete?',
+                                                noAction:noAction,
+                                                yesAction: ()=>yesAction(type: 'anterior')
+                                            );
+                                          },
+                                          color: Colors.grey,
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                  Positioned(
-                                    width: 70,
-                                    height: 50,
-                                    bottom: 0,
-                                    child: IconButton(
-                                      icon: Icon(Icons.edit),
-                                      iconSize: 30,
-                                      onPressed: (){
-                                        final String uploadType = Provider.of<PollProvider>(context,listen: false).anteriorPhotoUploadType;
-                                        if(uploadType == 'gallery') {
-                                          uploadPhoto(type: 'anterior');
-                                        } else {
-                                          takePhoto(type: 'anterior');
-                                        }
-                                      },
-                                      color: Colors.grey,
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8),
+                                      child: Container(
+                                        height: height * 0.06,
+                                        width: width * 0.11,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(40.0),
+                                            color: Colors.white
+                                        ),
+                                        child: IconButton(
+                                          padding: EdgeInsets.all(0),
+                                          icon: Icon(Icons.edit_rounded,color: Colors.grey,),
+                                          iconSize: height * 0.04,
+                                          onPressed: (){
+                                            final String uploadType = Provider.of<PollProvider>(context,listen: false).anteriorPhotoUploadType;
+                                            if(uploadType == 'gallery') {
+                                              uploadPhoto(type: 'anterior');
+                                            } else {
+                                              takePhoto(type: 'anterior');
+                                            }
+                                          },
+                                          color: Colors.grey,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -370,7 +389,6 @@ class _CreatePostFormState extends State<CreatePostForm> {
                               height: height * 0.40,
                               color: Colors.redAccent.withOpacity(0.3),
                               child: Stack(
-                                alignment: Alignment.topRight,
                                 children: [
                                   Positioned(
                                     child: Image.file(
@@ -380,41 +398,61 @@ class _CreatePostFormState extends State<CreatePostForm> {
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  Positioned(
-                                    width: 70,
-                                    height:650,
-                                    bottom: 0,
-                                    child: IconButton(
-                                      icon: Icon(Icons.minimize),
-                                      iconSize: 50,
-                                      onPressed: (){
-                                        Dialogs.confirmationDialog(
-                                            context: context,
-                                            content: '',
-                                            title: 'Are you sure you want to delete?',
-                                            noAction:noAction,
-                                            yesAction: ()=>yesAction(type: 'posterior')
-                                        );
-                                      },
-                                      color: Colors.grey,
+                                  Align(
+                                    alignment: Alignment.topRight,
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8),
+                                      child: Container(
+                                        height: height * 0.06,
+                                        width: width * 0.11,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(40.0),
+                                          color: Colors.white
+                                        ),
+                                        child: IconButton(
+                                          padding: EdgeInsets.all(0),
+                                          icon: Icon(Icons.cancel_rounded,color: Colors.grey,),
+                                          iconSize: height * 0.05,
+                                          onPressed: (){
+                                            Dialogs.confirmationDialog(
+                                                context: context,
+                                                content: '',
+                                                title: 'Are you sure you want to delete?',
+                                                noAction:noAction,
+                                                yesAction: ()=>yesAction(type: 'posterior')
+                                            );
+                                          },
+                                          color: Colors.grey,
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                  Positioned(
-                                    width: 70,
-                                    height: 50,
-                                    bottom: 0,
-                                    child: IconButton(
-                                      icon: Icon(Icons.edit),
-                                      iconSize: 30,
-                                      onPressed: (){
-                                        final String uploadType = Provider.of<PollProvider>(context,listen: false).posteriorPhotoUploadType;
-                                        if(uploadType == 'gallery') {
-                                          uploadPhoto(type: 'posterior');
-                                        } else {
-                                          takePhoto(type: 'posterior');
-                                        }
-                                      },
-                                      color: Colors.grey,
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8),
+                                      child: Container(
+                                        height: height * 0.06,
+                                        width: width * 0.11,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(40.0),
+                                            color: Colors.white
+                                        ),
+                                        child: IconButton(
+                                          padding: EdgeInsets.all(0),
+                                          icon: Icon(Icons.edit_rounded,color: Colors.grey,),
+                                          iconSize: height * 0.04,
+                                          onPressed: (){
+                                            final String uploadType = Provider.of<PollProvider>(context,listen: false).posteriorPhotoUploadType;
+                                            if(uploadType == 'gallery') {
+                                              uploadPhoto(type: 'posterior');
+                                            } else {
+                                              takePhoto(type: 'posterior');
+                                            }
+                                          },
+                                          color: Colors.grey,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ],

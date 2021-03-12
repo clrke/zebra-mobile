@@ -6,6 +6,7 @@ import 'package:zero_mobile/components/appCaptionField.dart';
 import 'package:zero_mobile/constants/theme.dart';
 import 'package:zero_mobile/providers/HomeProvider.dart';
 import 'package:zero_mobile/providers/PollProvider.dart';
+import 'package:zero_mobile/repositories/voteRepository.dart';
 import 'package:zero_mobile/utils/sizeConfig.dart';
 
 class Checklist extends StatefulWidget {
@@ -17,7 +18,7 @@ class _ChecklistState extends State<Checklist> {
   bool item1 = false;
   bool item2 = false;
   bool item3 = false;
-  List<String> checkList = [];
+  List checkList = [];
 
   final remarksController = TextEditingController();
 
@@ -33,6 +34,19 @@ class _ChecklistState extends State<Checklist> {
   void dispose() {
     super.dispose();
     remarksController.dispose();
+  }
+
+  submitCheckList() async{
+    if(checkList.isNotEmpty) {
+      await VoteRepository.submitChecklist(
+          identifiedLandmarks: checkList.asMap().containsKey(0),
+          safetyCriteria: checkList.asMap().containsKey(1),
+          cysticDuct: checkList.asMap().containsKey(2),
+          remarks: remarksController.value.text
+      );
+      Provider.of<HomeProvider>(context,listen: false).setCurrentIndex(index: 0);
+      Navigator.pushReplacementNamed(context, '/');
+    }
   }
 
   @override
@@ -145,7 +159,7 @@ class _ChecklistState extends State<Checklist> {
                     Checkbox(
                         value : item3,
                         onChanged: (value){
-                          if(!item2) {
+                          if(!item3) {
                             checkList.add("Do you agree that it is the cystic duct?");
                           } else {
                             checkList.remove("Do you agree that it is the cystic duct?");
@@ -185,11 +199,7 @@ class _ChecklistState extends State<Checklist> {
             Center(
               child: AppButton(
                   onPressed: (){
-                    if(checkList.isNotEmpty) {
-                      Provider.of<PollProvider>(context,listen: false).addChecklist(checklist: checkList);
-                      Provider.of<HomeProvider>(context,listen: false).setCurrentIndex(index: 0);
-                      Navigator.pushReplacementNamed(context, '/');
-                    }
+                    submitCheckList();
                   },
                   text: 'Finish',
                   padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 32.0)

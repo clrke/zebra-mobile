@@ -5,7 +5,6 @@ import 'package:zero_mobile/components/appButton.dart';
 import 'package:zero_mobile/components/loader.dart';
 import 'package:zero_mobile/models/voteModel.dart';
 import 'package:zero_mobile/providers/HomeProvider.dart';
-import 'package:zero_mobile/providers/VoteProvider.dart';
 import 'package:zero_mobile/repositories/pollRepository.dart';
 import 'package:zero_mobile/screens/result/components/resultBody.dart';
 import 'package:zero_mobile/utils/sizeConfig.dart';
@@ -50,8 +49,6 @@ class _ResultsState extends State<Results> {
     VoteModel votes = await PollRepository.fetchVotes();
     String yes = votes.yesRatioVote.split('%')[0].split('.')[0].trim();
     String no = votes.noRatioVote.split('%')[0].trim();
-    Provider.of<VoteProvider>(context, listen: false).setVotes(vote: votes.votes);
-
     Future.delayed(Duration(seconds: 1),(){
       setState(() {
         progressValue = double.parse('0.$yes');

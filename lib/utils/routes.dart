@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:zero_mobile/providers/VoteProvider.dart';
+import 'package:zero_mobile/models/pollModel.dart';
+import 'package:zero_mobile/providers/PollProvider.dart';
 import 'package:zero_mobile/screens/cameraViewer.dart';
 import 'package:zero_mobile/screens/checklist.dart';
 import 'package:zero_mobile/screens/home.dart';
@@ -38,10 +39,8 @@ class AuthRoute {
         return MaterialPageRoute(builder: (_)=>Checklist());
       case '/post':
         return MaterialPageRoute(builder: (context){
-          List voters = Provider.of<VoteProvider>(context,listen: true).votes;
-          int count = voters.length;
-
-          if(count > 0) {
+          PollModel poll = Provider.of<PollProvider>(context,listen: true).currentPoll;
+          if(poll.status == 'P') {
             return Results();
           } else {
             return Post();

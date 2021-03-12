@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'dart:io';
 
+import 'package:zero_mobile/models/pollModel.dart';
+
 class PollProvider extends ChangeNotifier{
   List<String> checkList = [];
   File anteriorPhoto;
@@ -8,6 +10,12 @@ class PollProvider extends ChangeNotifier{
   String currentPhotoSelected;
   String anteriorPhotoUploadType;
   String posteriorPhotoUploadType;
+  PollModel currentPoll;
+
+  setCurrentPoll({@required PollModel poll}){
+    currentPoll = poll;
+    notifyListeners();
+  }
 
   anteriorUploadType({@required String uploadType}){
     anteriorPhotoUploadType = uploadType;

@@ -5,11 +5,13 @@ class PollModel extends BaseModel {
   final String messagePost;
   final String anteriorPhoto;
   final String posteriorPhoto;
+  final String status;
 
   PollModel({this.surgeon,
       this.messagePost,
       this.anteriorPhoto,
       this.posteriorPhoto,
+      this.status,
       id,
       updatedAt
   }) : super(id: id, updatedAt: updatedAt);
@@ -22,6 +24,7 @@ class PollModel extends BaseModel {
       anteriorPhoto: json['anterior_photo'],
       posteriorPhoto: json['posterior_photo'],
       updatedAt: json['updated_at'],
+      status: json['status']
     );
   }
 

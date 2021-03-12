@@ -5,6 +5,7 @@ import 'package:zero_mobile/providers/VoteProvider.dart';
 import 'package:zero_mobile/screens/cameraViewer.dart';
 import 'package:zero_mobile/screens/checklist.dart';
 import 'package:zero_mobile/screens/home.dart';
+import 'package:zero_mobile/screens/label.dart';
 import 'package:zero_mobile/screens/login.dart';
 import 'package:zero_mobile/screens/account.dart';
 import 'package:zero_mobile/screens/call.dart';
@@ -57,6 +58,8 @@ class AuthRoute {
         return MaterialPageRoute(builder: (_)=>CameraViewer());
       case '/vote':
         return MaterialPageRoute(builder: (_)=>Vote());
+      case '/vote/label':
+        return MaterialPageRoute(builder: (_)=>Label());
       case '/results':
         return MaterialPageRoute(builder: (_)=>Results());
       case '/results/see-more':

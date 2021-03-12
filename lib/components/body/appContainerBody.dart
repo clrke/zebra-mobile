@@ -24,40 +24,38 @@ class _AppContainerBodyState extends State<AppContainerBody> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     final height = SizeConfig.screenHeight;
-    int _currentIndex = Provider.of<HomeProvider>(context,listen: true).currentIndex;
-
-    return Consumer<HomeProvider>(builder: (context,data,child){
-      return Scaffold(
-          resizeToAvoidBottomInset: false,
-          backgroundColor: Colors.white,
-          appBar: ContainerAppBar.appBar(
-              fontSize: height * 0.03,
-              title: data.appBarTitle,
-              isToggle: isToggle,
-              onSwitch: (value) {
-                setState(() {
-                  isToggle = !isToggle;
-                });
-              },
-              iconPress: () {
-                print('help being tap');
-              }
-          ),
-          body: Navigator(
-            key: _navigatorKey,
-            initialRoute: '/',
-            onGenerateRoute: AuthRoute.generateRoute,
-          ),
-          bottomNavigationBar: BottomNavBar.bottomBar(
-            iconSize: height * 0.04,
-              currentIndex: _currentIndex,
-              onSelectNav: (bottomNavIndex) {
-                Provider.of<HomeProvider>(context,listen: false).setCurrentIndex(index: bottomNavIndex);
-                _navigatorKey.currentState.pushReplacementNamed(routeList[bottomNavIndex]['route']);
-              }
-          )
-      );
+    int _currentIndex =
+        Provider.of<HomeProvider>(context, listen: true).currentIndex;
+    return Consumer<HomeProvider>(builder: (context, data, child) {
+        return Scaffold(
+            resizeToAvoidBottomInset: false,
+            backgroundColor: Colors.white,
+            appBar: ContainerAppBar.appBar(
+                fontSize: height * 0.03,
+                title: data.appBarTitle,
+                isToggle: isToggle,
+                onSwitch: (value) {
+                  setState(() {
+                    isToggle = !isToggle;
+                  });
+                },
+                iconPress: () {
+                  print('help being tap');
+                }),
+            body: Navigator(
+              key: _navigatorKey,
+              initialRoute: '/',
+              onGenerateRoute: AuthRoute.generateRoute,
+            ),
+            bottomNavigationBar: BottomNavBar.bottomBar(
+                iconSize: height * 0.04,
+                currentIndex: _currentIndex,
+                onSelectNav: (bottomNavIndex) {
+                  Provider.of<HomeProvider>(context, listen: false)
+                      .setCurrentIndex(index: bottomNavIndex);
+                  _navigatorKey.currentState
+                      .pushReplacementNamed(routeList[bottomNavIndex]['route']);
+                }));
     });
   }
 }
-

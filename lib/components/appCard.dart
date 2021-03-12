@@ -12,13 +12,14 @@ class AppCard extends StatelessWidget {
   final String anteriorPhoto;
   final Function onPress;
 
-  AppCard(
-      {this.surgeonId,
-      this.postTime,
-      this.postCaption,
-      @required this.posteriorPhoto,
-      @required this.anteriorPhoto,
-      this.onPress});
+  AppCard({
+    this.surgeonId,
+    this.postTime,
+    this.postCaption,
+    @required this.posteriorPhoto,
+    @required this.anteriorPhoto,
+    this.onPress
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -156,6 +157,7 @@ class AppCard extends StatelessWidget {
                               ),
                               backgroundColor: Colors.white,
                               onPressed: () {
+                                Navigator.pushReplacementNamed(context, '/vote/label');
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => Label(
                                         imageSource: '$anteriorPhoto')));
@@ -225,6 +227,7 @@ class AppCard extends StatelessWidget {
                               ),
                               backgroundColor: Colors.white,
                               onPressed: () {
+                                Navigator.pushReplacementNamed(context, '/vote/label');
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => Label(
                                         imageSource: '$posteriorPhoto')));

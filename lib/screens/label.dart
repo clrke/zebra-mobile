@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:zero_mobile/components/appCustomPainter/labelAndVote.dart';
+import 'package:zero_mobile/components/appLabelVote/labelAndVote.dart';
 
 class Label extends StatefulWidget {
-
   final String imageSource;
 
   Label({
-    @required this.imageSource,
+    this.imageSource,
   });
 
   @override
@@ -14,14 +13,15 @@ class Label extends StatefulWidget {
 }
 
 class _LabelState extends State<Label> {
+
   String imageSource;
 
   _LabelState({
-    @required this.imageSource,
+    this.imageSource,
   });
 
   @override
   Widget build(BuildContext context) {
-    return LabelAndVote(imageSource: imageSource,);
+    return LabelAndVote(imageSource: imageSource);
   }
 }

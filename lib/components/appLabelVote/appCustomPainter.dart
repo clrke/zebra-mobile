@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:zero_mobile/components/appCustomPainter/drawingArea.dart';
+import 'package:zero_mobile/components/appLabelVote/drawingArea.dart';
 
 class AppCustomPainter extends CustomPainter{
   List<DrawingArea> points;

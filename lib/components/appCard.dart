@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zero_mobile/constants/theme.dart';
 import 'package:zero_mobile/components/profileIcon.dart';
+import 'package:zero_mobile/screens/label.dart';
 import 'appButton.dart';
-import 'appCustomPainter/labelAndVote.dart';
 
 class AppCard extends StatelessWidget {
   final String surgeonId;
@@ -157,7 +157,7 @@ class AppCard extends StatelessWidget {
                               backgroundColor: Colors.white,
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => LabelAndVote(
+                                    builder: (context) => Label(
                                         imageSource: '$anteriorPhoto')));
                               },
                             ),
@@ -226,7 +226,7 @@ class AppCard extends StatelessWidget {
                               backgroundColor: Colors.white,
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => LabelAndVote(
+                                    builder: (context) => Label(
                                         imageSource: '$posteriorPhoto')));
                               },
                             ),

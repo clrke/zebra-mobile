@@ -5,10 +5,9 @@ import 'package:flutter/rendering.dart';
 import 'package:zero_mobile/components/appCustomPainter/appCustomPainter.dart';
 import 'package:zero_mobile/components/appCustomPainter/appColorButton.dart';
 import 'package:zero_mobile/components/appCustomPainter/drawingArea.dart';
-import 'package:zero_mobile/components/appCustomPainter/widgetToImage.dart';
 import 'package:zero_mobile/constants/theme.dart';
-
-import 'convertUtils.dart';
+import 'package:zero_mobile/utils/widgetToImage.dart';
+import 'package:zero_mobile/utils/convertImageUtil.dart';
 
 class LabelAndVote extends StatefulWidget {
   final String imageSource;

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class ColorButton extends StatefulWidget {
 
-  Color color;
-  String semanticLabel;
-  Function onPressed;
+  final Color color;
+  final String semanticLabel;
+  final Function onPressed;
 
   ColorButton({
     @required this.color,

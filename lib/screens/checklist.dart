@@ -5,7 +5,6 @@ import 'package:zero_mobile/components/appButton.dart';
 import 'package:zero_mobile/components/appCaptionField.dart';
 import 'package:zero_mobile/constants/theme.dart';
 import 'package:zero_mobile/providers/HomeProvider.dart';
-import 'package:zero_mobile/providers/PollProvider.dart';
 import 'package:zero_mobile/repositories/voteRepository.dart';
 import 'package:zero_mobile/utils/sizeConfig.dart';
 

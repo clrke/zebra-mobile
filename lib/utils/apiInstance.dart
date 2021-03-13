@@ -10,14 +10,14 @@ class ApiInstance {
         onRequest:(RequestOptions options) async {
           String token = await LocalStorage.readLocalStorage('_token');
           options.baseUrl = settings['apiUrl'];
-          options.headers["Authorization"] = "Bearer $token";
+          options.headers["Authorization"] = "Bearer s$token";
           return options;
         },
         onResponse:(Response response) async {
           return response;
         },
         onError: (DioError e) async {
-          if(e.response.statusCode == 401) {
+          if(e.response.statusCode == 401 && (!e.response.statusCode.isNaN)) {
             String refreshToken = await LocalStorage.readLocalStorage('_refreshToken');
             Map<String,dynamic> userResponse = await UserRepository.refreshToken(refreshToken: refreshToken);
             LocalStorage.storeLocalStorage('_token', userResponse['accessToken']);

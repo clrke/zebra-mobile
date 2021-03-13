@@ -29,10 +29,17 @@ class PollRepository {
 
   static Future<List<PollModel>> fetchPolls() async {
     final url = 'polls';
-    var responsePolls = await ApiInstance.apiInstance().get(url);
-    List responseJson = responsePolls.data['results'];
-    var polls = responseJson.map((poll) => PollModel.fromJson(poll)).toList();
-    return polls;
+    Response responsePolls = await ApiInstance.apiInstance().get(url);
+
+    if(responsePolls.statusCode == 200) {
+      List responseJson = responsePolls.data['results'];
+      var polls = responseJson.map((poll) => PollModel.fromJson(poll)).toList();
+      return polls;
+    } else if (responsePolls.statusCode == 401) {
+      fetchPolls();
+    } else {
+      return [];
+    }
   }
 
   static Future createPoll() async {

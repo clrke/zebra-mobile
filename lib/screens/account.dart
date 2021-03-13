@@ -22,7 +22,7 @@ class _AccountState extends State<Account> {
         child: Column(
           children: [
             Text(' i am in operation'),
-            ElevatedButton(onPressed: (){
+            ElevatedButton(onPressed: () async {
               Navigator.pushReplacementNamed(context, '/logout');
               data.deleteToken();
             },child: Text('Logout'),)

@@ -10,7 +10,7 @@ class ApiInstance {
         onRequest:(RequestOptions options) async {
           String token = await LocalStorage.readLocalStorage('_token');
           options.baseUrl = settings['apiUrl'];
-          options.headers["Authorization"] = "Bearer s$token";
+          options.headers["Authorization"] = "Bearer $token";
           return options;
         },
         onResponse:(Response response) async {

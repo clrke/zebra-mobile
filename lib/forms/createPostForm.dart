@@ -7,10 +7,12 @@ import 'package:zero_mobile/components/appButtonOutline.dart';
 import 'package:zero_mobile/components/appCaptionField.dart';
 import 'package:zero_mobile/components/profileIcon.dart';
 import 'package:zero_mobile/constants/theme.dart';
+import 'package:zero_mobile/providers/HomeProvider.dart';
 import 'package:zero_mobile/providers/PollProvider.dart';
 import 'package:zero_mobile/repositories/pollRepository.dart';
 import 'package:zero_mobile/utils/dialog.dart';
 import 'package:path/path.dart' as path;
+import 'package:zero_mobile/utils/localStorage.dart';
 import 'package:zero_mobile/utils/utils.dart';
 
 class CreatePostForm extends StatefulWidget {
@@ -172,6 +174,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
     final anteriorPhoto = Provider.of<PollProvider>(context,listen: true).anteriorPhoto;
     final posteriorPhoto = Provider.of<PollProvider>(context,listen: true).posteriorPhoto;
     final photos = (anteriorPhoto != null && posteriorPhoto != null);
+    final surgeonId = Provider.of<HomeProvider>(context,listen: false).surgeonId.substring(0,12);
 
     return Form(
       key: _formKey,
@@ -200,7 +203,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                             ProfileIcon(size: width * 0.10,),
                             SizedBox(width: 12.0,),
                             Text(
-                              'ID 1234567890',
+                              'ID $surgeonId',
                               style: TextStyle(
                                 color: theme['secondary'],
                               ),

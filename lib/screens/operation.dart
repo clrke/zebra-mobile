@@ -29,12 +29,12 @@ class _OperationState extends State<Operation> {
     });
   }
 
-  void fetchSurgeonPoll() async{
+  void fetchSurgeonPoll() async {
     PollModel poll = await PollRepository.fetchCurrentPoll();
     Provider.of<PollProvider>(context,listen: false).setCurrentPoll(poll: poll);
   }
 
-  void fetchPolls() async{
+  void fetchPolls() async {
     setState(() {
       polls = PollRepository.fetchPolls();
     });

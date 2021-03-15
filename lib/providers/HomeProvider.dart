@@ -7,6 +7,7 @@ class HomeProvider extends ChangeNotifier{
   String accessToken;
   String appBarTitle = 'OnGoing Operations';
   int currentIndex = 0;
+  String surgeonId;
 
   setCurrentIndex({@required int index}){
     currentIndex = index;
@@ -21,6 +22,7 @@ class HomeProvider extends ChangeNotifier{
 
   storeToken() async{
     accessToken = await LocalStorage.readLocalStorage('_token');
+    surgeonId = await LocalStorage.readLocalStorage('_surgeonId');
     notifyListeners();
   }
 

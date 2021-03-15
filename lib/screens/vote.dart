@@ -56,12 +56,13 @@ class _VoteState extends State<Vote> {
 
     await VoteRepository.surgeonVote(id: id,vote: vote,remark: remark);
 
-    setState(() {
-      loading = false;
+    Future.delayed(Duration(seconds: 2),(){
+      setState(() {
+        loading = false;
+      });
+      Navigator.pushReplacementNamed(context, '/');
+      Provider.of<HomeProvider>(context,listen: false).setCurrentIndex(index: 0);
     });
-
-    Navigator.pushReplacementNamed(context, '/');
-    Provider.of<HomeProvider>(context,listen: false).setCurrentIndex(index: 0);
   }
 
   @override

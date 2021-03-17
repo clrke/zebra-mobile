@@ -15,7 +15,7 @@ class ContainerAppBar {
         fit: BoxFit.fitWidth,
         child: Text(
           title,
-          style: TextStyle(color: theme['secondary'],fontSize: fontSize),
+          style: TextStyle(color: theme['secondary'],fontSize: fontSize,fontWeight: FontWeight.bold),
         ),
       ),
       actions: [

@@ -65,9 +65,9 @@ class AppLogo extends StatelessWidget {
                             height: 10.0,
                           ),
                           SizedBox(
-                            width: width * 0.70,
+                            width: width * 0.80,
                             child: Text(
-                                'Promoting the culture of safety in cholecystectomy',
+                                'Promoting the culture of safety in laparoscopic cholecystectomy',
                                 style: TextStyle(
                                   color: theme['secondary'],
                                   fontSize: height * 0.02,

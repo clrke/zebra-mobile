@@ -5,6 +5,7 @@ import 'package:zero_mobile/components/appButton.dart';
 import 'package:zero_mobile/components/appCaptionField.dart';
 import 'package:zero_mobile/components/appCard.dart';
 import 'package:zero_mobile/components/loader.dart';
+import 'package:zero_mobile/constants/theme.dart';
 import 'package:zero_mobile/models/pollModel.dart';
 import 'package:zero_mobile/providers/HomeProvider.dart';
 import 'package:zero_mobile/providers/VoteProvider.dart';
@@ -28,7 +29,7 @@ class _VoteState extends State<Vote> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<HomeProvider>(context, listen: false).changeTitle(title: 'Vote & Label');
+      Provider.of<HomeProvider>(context, listen: false).changeTitle(title: 'Label & Vote');
       final id = Provider.of<VoteProvider>(context, listen: false).selectedPollId;
       fetchPolls(id: id);
     });
@@ -94,6 +95,17 @@ class _VoteState extends State<Vote> {
                 PollModel results = data.data;
                 return Column(
                   children: [
+                    Container(
+                      width: width * 0.75,
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Text('Label the anatomical landmarks.',
+                          style: TextStyle(
+                              color: theme['secondary'],
+                          ),
+                        ),
+                      ),
+                    ),
                     AppCard(
                       anteriorPhoto: results.anteriorPhoto,
                       posteriorPhoto: results.posteriorPhoto,
@@ -168,6 +180,7 @@ class _VoteState extends State<Vote> {
                               SizedBox(height: height * 0.01,),
                               Container(
                                 child: AppCaptionField(
+                                  borderColor: theme['opacitySecondary'],
                                   controller: _remarksController,
                                   hintText: '',
                                   fillColor: Colors.white,

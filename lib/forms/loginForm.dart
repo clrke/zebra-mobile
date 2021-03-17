@@ -63,6 +63,9 @@ class _LoginFormState extends State<LoginForm> {
                   ),
                 ),
                 AppTextField(
+                  paddingVertical:width * 0.05,
+                  paddingHorizontal:height * 0.025,
+                  widthSize: width,
                   controller: _usernameController,
                   onValidate: (value) {
                     if (value.isEmpty) {
@@ -83,6 +86,9 @@ class _LoginFormState extends State<LoginForm> {
                   ),
                 ),
                 AppTextField(
+                  paddingVertical:width * 0.05,
+                  paddingHorizontal:height * 0.025,
+                  widthSize: width,
                   controller: _passwordController,
                   onValidate: (value) {
                     if (value.isEmpty) {

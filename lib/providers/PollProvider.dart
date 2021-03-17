@@ -11,6 +11,12 @@ class PollProvider extends ChangeNotifier{
   String anteriorPhotoUploadType;
   String posteriorPhotoUploadType;
   PollModel currentPoll;
+  Map<String,dynamic> pollCase;
+
+  setPollCase(Map<String,dynamic> caseData) {
+    pollCase = caseData;
+    notifyListeners();
+  }
 
   setCurrentPoll({@required PollModel poll}){
     currentPoll = poll;

@@ -17,7 +17,7 @@ class Utils{
 
   static List<Map<String,dynamic>> bottomNavigationRoutes() {
     List<Map<String, dynamic>> routeList = [
-      {'route': '/', 'title': 'On Going Operation'},
+      {'route': '/', 'title': 'Ongoing Operation'},
       {'route': '/call', 'title': 'Emergency Call'},
       {'route': '/post', 'title': 'Create Post'},
       {'route': '/account', 'title': 'Account'}

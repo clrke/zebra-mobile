@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:zero_mobile/models/pollModel.dart';
 import 'package:zero_mobile/providers/PollProvider.dart';
 import 'package:zero_mobile/screens/cameraViewer.dart';
+import 'package:zero_mobile/screens/caseEntry/pollCase.dart';
 import 'package:zero_mobile/screens/checklist.dart';
 import 'package:zero_mobile/screens/home.dart';
 import 'package:zero_mobile/screens/login.dart';
@@ -40,11 +41,20 @@ class AuthRoute {
       case '/post':
         return MaterialPageRoute(builder: (context){
           PollModel poll = Provider.of<PollProvider>(context,listen: true).currentPoll;
+          Map<String,dynamic> pollCase = Provider.of<PollProvider>(context,listen: true).pollCase;
+
           if(poll.status == 'P') {
             return Results();
           } else {
             return Post();
           }
+          // if(poll.status == 'P') {
+          //   return Results();
+          // } else if(pollCase == null){
+          //   return PollCase();
+          // } else {
+          //   return Post();
+          // }
         });
       case '/call':
         return MaterialPageRoute(builder: (_)=>Call());

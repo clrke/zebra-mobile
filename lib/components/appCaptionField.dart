@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:zero_mobile/constants/theme.dart';
 import 'package:zero_mobile/utils/sizeConfig.dart';
 
 class AppCaptionField extends StatelessWidget {
@@ -7,12 +8,14 @@ class AppCaptionField extends StatelessWidget {
   final Function(String) onValidate;
   final String hintText;
   final Color fillColor;
+  final Color borderColor;
 
   AppCaptionField({
     @required this.controller,
     this.onValidate,
     @required this.hintText,
-    @required this.fillColor
+    @required this.fillColor,
+    @required this.borderColor
   });
 
   @override
@@ -23,7 +26,7 @@ class AppCaptionField extends StatelessWidget {
     final width = SizeConfig.screenWidth;
     final height = SizeConfig.screenHeight;
     final fontSize = height * 0.02;
-    final borderRadius = height * 0.02;
+    final borderRadius = height * 0.015;
 
     return TextFormField(
       maxLines: null,
@@ -43,21 +46,21 @@ class AppCaptionField extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
           borderSide: BorderSide(
-            color: Colors.grey[400],
+            color: borderColor,
             width: 2.0,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
           borderSide: BorderSide(
-            color: Colors.grey[400],
+            color: borderColor,
             width: 2.0,
           ),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
           borderSide: BorderSide(
-            color: Colors.red,
+            color: borderColor,
             width: 2.0,
           ),
         ),
@@ -66,7 +69,7 @@ class AppCaptionField extends StatelessWidget {
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
           borderSide: BorderSide(
-            color: Colors.grey[500],
+            color: borderColor,
             width: 2.0,
           ),
         ),

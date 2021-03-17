@@ -170,7 +170,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final fontSize = height * 0.025;
+    final fontSize = height * 0.02;
     final anteriorPhoto = Provider.of<PollProvider>(context,listen: true).anteriorPhoto;
     final posteriorPhoto = Provider.of<PollProvider>(context,listen: true).posteriorPhoto;
     final photos = (anteriorPhoto != null && posteriorPhoto != null);
@@ -188,7 +188,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 SizedBox(
-                  height: height * 0.05,
+                  height: height * 0.01,
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -232,15 +232,16 @@ class _CreatePostFormState extends State<CreatePostForm> {
                   ],
                 ),
                 SizedBox(
-                  height: height * 0.05,
+                  height: height * 0.03,
                 ),
                 AppCaptionField(
+                  borderColor: Colors.grey[400],
                   controller: _captionController,
                   hintText: 'Ask your co-surgeons...',
                   fillColor: Colors.grey[400],
                 ),
                 SizedBox(
-                  height: height * 0.06,
+                  height: height * 0.04,
                 ),
                 Container(
                   width: width,
@@ -262,6 +263,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                                 ],
                               ),
                             ),
+                            SizedBox(height: 8.0,),
                             anteriorPhoto !=null ? Container(
                               width: width,
                               height: height * 0.40,
@@ -387,6 +389,7 @@ class _CreatePostFormState extends State<CreatePostForm> {
                                 ],
                               ),
                             ),
+                            SizedBox(height: 8.0,),
                             posteriorPhoto !=null ? Container(
                               width: width,
                               height: height * 0.40,

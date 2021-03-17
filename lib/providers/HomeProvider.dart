@@ -5,7 +5,7 @@ import 'package:zero_mobile/utils/utils.dart';
 class HomeProvider extends ChangeNotifier{
   List<Map<String, dynamic>> routeList = Utils.bottomNavigationRoutes();
   String accessToken;
-  String appBarTitle = 'OnGoing Operations';
+  String appBarTitle = 'Ongoing Operations';
   int currentIndex = 0;
   String surgeonId;
 

@@ -18,8 +18,8 @@ class ProfileIcon extends StatelessWidget {
       decoration: new BoxDecoration(
         borderRadius: new BorderRadius.all(new Radius.circular(50.0)),
         border: new Border.all(
-          color: Colors.grey[500],
-          width: 1.5,
+          color: theme['secondary'],
+          width: 2,
         ),
       ),
     );

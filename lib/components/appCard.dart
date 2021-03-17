@@ -24,7 +24,7 @@ class AppCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final fontSize = height * 0.025;
+    final fontSize = height * 0.02;
 
     return Column(
       children: <Widget>[
@@ -52,14 +52,14 @@ class AppCard extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text(
-                        postTime,
-                        style: TextStyle(
-                          color: theme['secondary'],
-                          fontSize: fontSize * .8,
-                          fontWeight: FontWeight.w200,
-                        ),
-                      )
+                      // Text(
+                      //   postTime,
+                      //   style: TextStyle(
+                      //     color: theme['secondary'],
+                      //     fontSize: fontSize * .8,
+                      //     fontWeight: FontWeight.w200,
+                      //   ),
+                      // )
                     ],
                   )
                 ],
@@ -107,11 +107,12 @@ class AppCard extends StatelessWidget {
                       style: TextStyle(
                           fontSize: fontSize, fontWeight: FontWeight.bold),
                     ),
+                    SizedBox(height: 8,),
                     Container(
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: Colors.grey[600],
-                          width: 5.0,
+                          width: 3,
                         ),
                       ),
                       child: Image.network(
@@ -153,6 +154,7 @@ class AppCard extends StatelessWidget {
                       style: TextStyle(
                           fontSize: fontSize, fontWeight: FontWeight.bold),
                     ),
+                    SizedBox(height: 8,),
                     Container(
                       decoration: BoxDecoration(
                         border: Border.all(

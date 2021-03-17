@@ -57,7 +57,7 @@ class VotePercentage extends StatelessWidget {
                     theme['opacitySecondary'],
                     value: progressValue,
                     valueColor: AlwaysStoppedAnimation(
-                        theme['secondary']),
+                        theme['primary']),
                     semanticsLabel:
                     'Linear progress indicator',
                   ),
@@ -66,7 +66,7 @@ class VotePercentage extends StatelessWidget {
                   width: width * 0.03,
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 16,horizontal: 8),
+                  padding: EdgeInsets.symmetric(vertical: 16,horizontal: 16),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(
                       Radius.circular(200),

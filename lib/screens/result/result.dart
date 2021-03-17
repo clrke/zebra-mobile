@@ -83,10 +83,10 @@ class _ResultsState extends State<Results> {
             child: Container(
               width: width,
               height: height,
-              padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+              padding: EdgeInsets.symmetric(horizontal: width * 0.05,vertical:  height * 0.02),
               child: Center(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     (
                         countVoters > 0 ? ResultBody(

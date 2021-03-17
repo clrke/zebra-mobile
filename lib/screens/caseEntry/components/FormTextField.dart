@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:zero_mobile/constants/theme.dart';
 import 'package:zero_mobile/utils/sizeConfig.dart';
 
-class AppTextField extends StatelessWidget {
+class FormTextField extends StatelessWidget {
   final controller;
   final Function(String) onValidate;
   final String hintText;
@@ -11,8 +11,9 @@ class AppTextField extends StatelessWidget {
   final double widthSize;
   final double paddingVertical;
   final double paddingHorizontal;
+  final String labelText;
 
-  AppTextField({
+  FormTextField({
     @required this.controller,
     @required this.onValidate,
     @required this.hintText,
@@ -20,6 +21,7 @@ class AppTextField extends StatelessWidget {
     @required this.widthSize,
     @required this.paddingHorizontal,
     @required this.paddingVertical,
+    @required this.labelText
   });
 
   @override
@@ -32,7 +34,6 @@ class AppTextField extends StatelessWidget {
     final borderRadius = height * 0.025;
 
     return Container(
-      width: widthSize,
       child: TextFormField(
         obscureText: obscureText,
         controller: controller,
@@ -40,7 +41,9 @@ class AppTextField extends StatelessWidget {
         validator: onValidate,
         style: TextStyle(fontSize: fontSize),
         decoration: InputDecoration(
-          floatingLabelBehavior: FloatingLabelBehavior.always,
+          floatingLabelBehavior: FloatingLabelBehavior.auto,
+          labelText: labelText,
+          labelStyle: TextStyle(fontSize: height * 0.023,color: theme['primary']),
           contentPadding:EdgeInsets.symmetric(
               vertical: paddingHorizontal,
               horizontal: paddingVertical
@@ -49,21 +52,21 @@ class AppTextField extends StatelessWidget {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius),
             borderSide: BorderSide(
-              color: theme['secondary'],
+              color: Colors.grey[500],
               width: 2.0,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius),
             borderSide: BorderSide(
-              color: theme['secondary'],
+              color: Colors.grey[500],
               width: 2.0,
             ),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius),
             borderSide: BorderSide(
-              color: theme['secondary'],
+              color: Colors.red,
               width: 2.0,
             ),
           ),
@@ -72,7 +75,7 @@ class AppTextField extends StatelessWidget {
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius),
             borderSide: BorderSide(
-              color: theme['secondary'],
+              color: Colors.grey[500],
               width: 2.0,
             ),
           ),

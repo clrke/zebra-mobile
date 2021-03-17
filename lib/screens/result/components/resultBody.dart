@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:zero_mobile/constants/theme.dart';
 import 'package:zero_mobile/models/voteModel.dart';
 import 'package:zero_mobile/screens/result/components/resultListButton.dart';
 import 'package:zero_mobile/screens/result/components/surgeonProfile.dart';
@@ -40,7 +41,8 @@ class ResultBody extends StatelessWidget {
                 'Total Number of Voters: $countVoters',
                 style: TextStyle(
                     fontSize: height * 0.02,
-                    fontWeight: FontWeight.bold
+                    fontWeight: FontWeight.bold,
+                    color: theme['secondary']
                 ),
               ),
             ),
@@ -53,7 +55,7 @@ class ResultBody extends StatelessWidget {
                   fit: BoxFit.fitWidth,
                   child: Text(
                     'Have we achieved the Critical View of Safety?',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold,),
                   )),
             ),
             VotePercentage(

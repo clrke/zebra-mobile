@@ -61,18 +61,16 @@ class _ChecklistState extends State<Checklist> {
       width: width,
       height: height,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0,vertical: 32.0),
+        padding: EdgeInsets.symmetric(horizontal: 24.0,vertical: 8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('To Surgeon:',
               style: TextStyle(
-                  color: theme['primary'],
                   fontSize: headerFontSize,
                   fontWeight: FontWeight.w800
               ),
             ),
-            SizedBox(height: 20.0,),
             Container(
               width: width,
               child: FittedBox(
@@ -96,7 +94,6 @@ class _ChecklistState extends State<Checklist> {
                     Text(
                       'Are all the important landmarks identified?',
                       style: TextStyle(
-                          color: theme['primary'],
                           fontSize: listFontSize,
                           fontWeight: FontWeight.w700
                       ),
@@ -130,7 +127,6 @@ class _ChecklistState extends State<Checklist> {
                       child: Text(
                         'Are the criteria of Critical View of Safety in doublet view achieved?',
                         style: TextStyle(
-                            color: theme['primary'],
                             fontSize: listFontSize,
                             fontWeight: FontWeight.w700
                         ),
@@ -143,41 +139,35 @@ class _ChecklistState extends State<Checklist> {
             SizedBox(height: 20.0,),
             Text('To Surgical Assist/Team:',
               style: TextStyle(
-                  color: theme['primary'],
                   fontSize: headerFontSize,
                   fontWeight: FontWeight.w800
               ),
             ),
             Container(
               width: width,
-              child: FittedBox(
-                fit: BoxFit.fitWidth,
-                child: Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    Checkbox(
-                        value : item3,
-                        onChanged: (value){
-                          if(!item3) {
-                            checkList.add("Do you agree that it is the cystic duct?");
-                          } else {
-                            checkList.remove("Do you agree that it is the cystic duct?");
-                          }
-                          setState(() {
-                            item3 =!item3;
-                          });
+              child: Row(
+                children: [
+                  Checkbox(
+                      value : item3,
+                      onChanged: (value){
+                        if(!item3) {
+                          checkList.add("Do you agree that it is the cystic duct?");
+                        } else {
+                          checkList.remove("Do you agree that it is the cystic duct?");
                         }
+                        setState(() {
+                          item3 =!item3;
+                        });
+                      }
+                  ),
+                  Text(
+                    'Do you agree that it is the cystic duct?',
+                    style: TextStyle(
+                        fontSize: listFontSize,
+                        fontWeight: FontWeight.w700
                     ),
-                    Text(
-                      'Do you agree that it is the cystic duct?',
-                      style: TextStyle(
-                          color: theme['primary'],
-                          fontSize: listFontSize,
-                          fontWeight: FontWeight.w700
-                      ),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
             ),
             SizedBox(height: 12.0,),
@@ -190,6 +180,7 @@ class _ChecklistState extends State<Checklist> {
             ),
             SizedBox(height: 8.0,),
             AppCaptionField(
+              borderColor: Colors.grey,
               controller: remarksController,
               hintText: '',
               fillColor: Colors.white,
